@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import { AlertTriangle, Search } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 const currentWeekSchedule = [
   {
@@ -49,26 +54,107 @@ type AttendanceRow = {
 };
 
 const attendanceRows: AttendanceRow[] = [
-  "01",
-  "02",
-  "03",
-  "04",
-  "05",
-  "06",
-  "07",
-  "08",
-  "09",
-  "10",
-].map((id) => ({
-  id,
-  date: `${id.padStart(2, "0")} Nov 2025`,
-  status: "Masuk",
-  checkIn: "07 : 52 : 04 AM",
-  checkOut: "18 : 24 : 08 PM",
-  duration: "09 Jam 24 Menit",
-  source: "FP",
-  approval: "Approved",
-}));
+  {
+    id: "01",
+    date: "01 Nov 2025",
+    status: "Masuk",
+    checkIn: "07 : 48 : 12 WIB",
+    checkOut: "18 : 03 : 27 WIB",
+    duration: "09 Jam 15 Menit",
+    source: "FP",
+    approval: "Approved",
+  },
+  {
+    id: "02",
+    date: "02 Nov 2025",
+    status: "Telat",
+    checkIn: "08 : 16 : 44 WIB",
+    checkOut: "18 : 12 : 05 WIB",
+    duration: "08 Jam 56 Menit",
+    source: "FP",
+    approval: "Approved",
+  },
+  {
+    id: "03",
+    date: "03 Nov 2025",
+    status: "Masuk",
+    checkIn: "07 : 51 : 09 WIB",
+    checkOut: "18 : 21 : 44 WIB",
+    duration: "09 Jam 30 Menit",
+    source: "Mobile",
+    approval: "Approved",
+  },
+  {
+    id: "04",
+    date: "04 Nov 2025",
+    status: "WFH",
+    checkIn: "07 : 59 : 58 WIB",
+    checkOut: "17 : 45 : 31 WIB",
+    duration: "08 Jam 38 Menit",
+    source: "Manual",
+    approval: "Approved",
+  },
+  {
+    id: "05",
+    date: "05 Nov 2025",
+    status: "Masuk",
+    checkIn: "07 : 42 : 33 WIB",
+    checkOut: "18 : 04 : 19 WIB",
+    duration: "09 Jam 01 Menit",
+    source: "FP",
+    approval: "Approved",
+  },
+  {
+    id: "06",
+    date: "06 Nov 2025",
+    status: "Masuk",
+    checkIn: "07 : 55 : 47 WIB",
+    checkOut: "18 : 17 : 03 WIB",
+    duration: "09 Jam 11 Menit",
+    source: "FP",
+    approval: "Approved",
+  },
+  {
+    id: "07",
+    date: "07 Nov 2025",
+    status: "Dinas Luar",
+    checkIn: "-",
+    checkOut: "-",
+    duration: "08 Jam",
+    source: "Manual",
+    approval: "Approved",
+  },
+  {
+    id: "08",
+    date: "08 Nov 2025",
+    status: "Cuti Tahunan",
+    checkIn: "-",
+    checkOut: "-",
+    duration: "-",
+    source: "Self Service",
+    approval: "Approved",
+  },
+  {
+    id: "09",
+    date: "09 Nov 2025",
+    status: "Masuk",
+    checkIn: "07 : 44 : 55 WIB",
+    checkOut: "18 : 08 : 12 WIB",
+    duration: "09 Jam 05 Menit",
+    source: "FP",
+    approval: "Approved",
+  },
+  {
+    id: "10",
+    date: "10 Nov 2025",
+    status: "Sakit",
+    checkIn: "-",
+    checkOut: "-",
+    duration: "-",
+    source: "Self Service",
+    approval: "Pending",
+  },
+];
 
 export default function DashboardPage() {
   return (

@@ -76,7 +76,7 @@ function NestedLink({ item }: { item: SubItem }) {
     <Link
       href={item.href}
       className={`relative flex items-center gap-6 rounded-md px-2 py-2 text-sm transition hover:text-white hover:font-bold ${
-        isActive ? "text-white" : "text-white/50"
+        isActive ? "text-white font-bold" : "text-white/50"
       }`}
     >
       <span className="h-full w-px self-stretch bg-white/50" aria-hidden />
@@ -119,7 +119,7 @@ export default function SideMenu() {
       <div className="flex items-center gap-3">
         <div className="relative h-10 w-10">
           <Image
-            src="/login-logo.png"
+            src="/logo.png"
             alt="GenHR logo"
             fill
             sizes="40px"
