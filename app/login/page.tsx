@@ -66,7 +66,7 @@ export default function LoginPage() {
                 name="username"
                 type="text"
                 placeholder="e.g. steve.jobs"
-                className="w-full rounded-md border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#55aea8] focus:outline-none focus:ring-2 focus:ring-[#55aea8]/60"
+                className="w-full rounded-md border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60"
               />
             </div>
 
@@ -80,12 +80,12 @@ export default function LoginPage() {
                   name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
-                  className="w-full rounded-md border border-black/10 bg-[#f7f7f7] px-4 py-4 pr-12 text-sm text-black placeholder:text-black/50 focus:border-[#55aea8] focus:outline-none focus:ring-2 focus:ring-[#55aea8]/60"
+                  className="w-full rounded-md border border-black/10 bg-[#f7f7f7] px-4 py-4 pr-12 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((prev) => !prev)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-black/50 transition hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#55aea8]/60"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-black/50 transition hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#43918B]/60"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   aria-pressed={showPassword}
                 >
@@ -101,11 +101,11 @@ export default function LoginPage() {
                   <input
                     type="checkbox"
                     name="remember"
-                    className="size-4 accent-[#55aea8]"
+                    className="size-4 accent-[#43918B]"
                   />
                   Remember me
                 </label>
-                <Link href="#" className="text-sm text-[#55aea8] hover:underline">
+                <Link href="#" className="text-sm text-[#43918B] hover:underline">
                   Forget Password?
                 </Link>
               </div>
@@ -113,7 +113,7 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full rounded-md border border-black/10 bg-[#55aea8] px-4 py-4 text-base font-semibold text-white transition hover:bg-[#4aa098]"
+              className="w-full rounded-md border border-black/10 bg-[#43918B] px-4 py-4 text-base font-semibold text-white transition hover:bg-[#4aa098]"
             >
               Login
             </button>

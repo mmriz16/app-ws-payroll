@@ -25,7 +25,7 @@ export default function DashboardPage() {
                 <div className="flex items-center gap-2 text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
-                    <span className="font-medium text-[#44b8af]">FAQ</span>
+                    <span className="font-medium text-[#43918B]">FAQ</span>
                 </div>
 
                 <div className="flex flex-col gap-4 border border-black/10 bg-white p-6">
@@ -41,7 +41,7 @@ export default function DashboardPage() {
                         </label>
                         <div className="flex items-center gap-3 text-xs">
                             <span>Jam Kerja</span>
-                            <span className=" bg-[#44b8af] px-3 py-1 text-white">
+                            <span className=" bg-[#43918B] px-3 py-1 text-white">
                                 06:00 - 19:00
                             </span>
                         </div>

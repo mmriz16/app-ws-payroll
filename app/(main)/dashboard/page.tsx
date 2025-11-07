@@ -163,7 +163,7 @@ export default function DashboardPage() {
         <div className="flex items-center gap-2 text-sm text-black/60">
           <span>Home</span>
           <span>/</span>
-          <span className="font-medium text-[#44b8af]">Dashboard</span>
+          <span className="font-medium text-[#43918B]">Dashboard</span>
         </div>
 
         <div className=" border border-black/10 bg-white p-6">
@@ -211,7 +211,7 @@ export default function DashboardPage() {
                 key={tab}
                 type="button"
                 className={`h-14 min-w-[120px] border-b-2 px-6 text-sm font-medium transition ${tab === "Absensi"
-                    ? "border-[#44b8af] text-black"
+                    ? "border-[#43918B] text-black"
                     : "border-transparent text-black/50"
                   }`}
               >
@@ -230,9 +230,9 @@ export default function DashboardPage() {
                 />
               </label>
               <div className="flex items-center gap-3 text-xs">
-                <span>Jam Kerja</span>
-                <span className=" bg-[#44b8af] px-3 py-1 text-white">
-                  06:00 - 19:00
+                <span>Jam Kerja Anda</span>
+                <span className=" bg-[#43918B] px-3 py-1 text-white">
+                  6 Jam 25 Menit
                 </span>
               </div>
             </div>
@@ -275,7 +275,7 @@ function ScheduleTable({ rows }: { rows: ScheduleRow[] }) {
               <td className="px-4 py-3 font-regular">{row.name}</td>
               {row.days.map((day) => (
                 <td key={day} className="px-4 py-3 text-center">
-                  <span className="inline-flex min-w-[50px] justify-center bg-[#44b8af] px-1 py-1 text-xs font-semibold text-white">
+                  <span className="inline-flex min-w-[50px] justify-center bg-[#43918B] px-1 py-1 text-xs font-semibold text-white">
                     WFO
                   </span>
                 </td>

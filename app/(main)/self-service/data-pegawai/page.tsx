@@ -1,4 +1,6 @@
 
+import { Plus } from "lucide-react";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -50,11 +52,20 @@ export default function DataPegawaiPage() {
                     <span>/</span>
                     <span>Self Service</span>
                     <span>/</span>
-                    <span className="font-medium text-[#44b8af]">Data Pegawai</span>
+                    <span className="font-medium text-[#43918B]">Data Pegawai</span>
                 </div>
 
                 <div className="flex flex-col gap-4 border border-black/10 bg-white p-6">
+                <div className="flex items-center gap-2">
                     <h2 className="text-lg font-medium">Data Pegawai</h2>
+                    <Link
+                        href="/self-service/data-pegawai/detail"
+                        className="ml-auto inline-flex items-center gap-2 rounded-md bg-[#43918B] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#4aa098]"
+                    >
+                        <Plus className="h-4 w-4" />
+                        Tambah Pegawai
+                    </Link>
+                </div>
                     <div className="overflow-hidden  border border-black/10">
                         <EmployeeTable rows={employees} />
                     </div>
