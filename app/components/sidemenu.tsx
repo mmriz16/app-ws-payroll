@@ -38,9 +38,9 @@ const menuItems: MenuItem[] = [
     icon: UserCircle2,
     children: [
       { label: "Data Pegawai", href: "/self-service/data-pegawai" },
-      { label: "Pengajuan Cuti / Izin", href: "/self-service/pengajuan-cuti" },
-      { label: "Approval Cuti / Izin", href: "/self-service/approval-cuti" },
-      { label: "Laporan Terlambat / Tidak Absen", href: "/self-service/laporan-terlambat" },
+      { label: "Pengajuan Cuti / Izin", href: "/self-service/pengajuan-cuti-ijin" },
+      { label: "Approval Cuti / Izin", href: "/self-service/approval-cuti-ijin" },
+      { label: "Laporan Terlambat / Tidak Absen", href: "/self-service/laporan-terlambat-tidak-absen" },
       { label: "Pengajuan Reimbursement", href: "/self-service/pengajuan-reimbursement" },
       { label: "Absen Project", href: "/self-service/absen-project" },
     ],
