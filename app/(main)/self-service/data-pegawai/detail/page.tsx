@@ -1,5 +1,7 @@
 
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Data Pegawai",
@@ -9,12 +11,18 @@ export default function DataPegawaiPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
             <section className="flex flex-1 flex-col gap-6 p-6">
+                <Link href="/self-service/data-pegawai" className="flex items-center justify-center w-fit text-sm font-semibold text-black">
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Kembali
+                </Link>
                 <div className="flex items-center gap-2 text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
                     <span>Self Service</span>
                     <span>/</span>
-                    <span className="font-medium text-[#43918B]">Data Pegawai</span>
+                    <span>Data Pegawai</span>
+                    <span>/</span>
+                    <span className="font-medium text-[#43918B]">Detail Pegawai</span>
                 </div>
 
                 <div className="flex w-full gap-4">

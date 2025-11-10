@@ -1,5 +1,4 @@
 
-import { Plus } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -74,9 +73,12 @@ export default function PengajuanCutiIjinPage() {
                             <div className="flex flex-col w-[250px] gap-2">
                                 <input id="tanggal_mulai" name="tanggal_mulai" type="month" placeholder="e.g. Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
-                            <button type="submit" className="w-fit border border-black/10 bg-[#43918B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4aa098]">
+                            <Link
+                                href="/self-service/pengajuan-cuti-ijin/create"
+                                className="flex items-center justify-center w-fit border border-black/10 bg-[#43918B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4aa098]"
+                            >
                                 Ajukan Cuti
-                            </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="overflow-hidden  border border-black/10">
