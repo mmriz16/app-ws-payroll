@@ -87,22 +87,22 @@ function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
         <table className="min-w-full divide-y divide-black/10 text-left text-xs">
             <thead className="bg-white text-black text-sm">
                 <tr>
-                    <th className="px-4 py-3">Status</th>
-                    <th className="px-4 py-3">NIP</th>
-                    <th className="px-4 py-3">Tanggal</th>
-                    <th className="px-4 py-3">Tipe</th>
-                    <th className="px-4 py-3">Tanggal Lapor</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Status</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tipe</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Lapor</th>
                     <th className="px-4 py-3">Notes</th>
                 </tr>
             </thead>
             <tbody className="divide-y divide-black/10 bg-white">
                 {rows.map((row) => (
                     <tr key={row.id}>
-                        <td className="px-4 py-3">{row.status}</td>
-                        <td className="px-4 py-3">{row.nip}</td>
-                        <td className="px-4 py-3">{row.tanggal}</td>
-                        <td className="px-4 py-3">{row.tipe}</td>
-                        <td className="px-4 py-3">{row.tanggal_lapor}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.status}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.nip}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tipe}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_lapor}</td>
                         <td className="px-4 py-3">{row.notes}</td>
                     </tr>
                 ))}

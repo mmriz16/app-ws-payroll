@@ -111,28 +111,28 @@ function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
         <table className="min-w-full divide-y divide-black/10 text-left text-xs">
             <thead className="bg-white text-black text-sm">
                 <tr>
-                    <th className="px-4 py-3">NIP</th>
-                    <th className="px-4 py-3">Nama Lengkap</th>
-                    <th className="px-4 py-3">Tipe</th>
-                    <th className="px-4 py-3">Catatan Pengajuan</th>
-                    <th className="px-4 py-3">Tanggal Mulai</th>
-                    <th className="px-4 py-3">Tanggal Selesai</th>
-                    <th className="px-4 py-3">Hari Kerja</th>
-                    <th className="px-4 py-3">Entrier</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Nama Lengkap</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tipe</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Catatan Pengajuan</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Mulai</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Selesai</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Hari Kerja</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Entrier</th>
                     <th className="px-4 py-3">Status Pengajuan</th>
                 </tr>
             </thead>
             <tbody className="divide-y divide-black/10 bg-white">
                 {rows.map((row) => (
                     <tr key={row.id}>
-                        <td className="px-4 py-3">{row.nip}</td>
-                        <td className="px-4 py-3">{row.nama_lengkap}</td>
-                        <td className="px-4 py-3">{row.tipe}</td>
-                        <td className="px-4 py-3">{row.catatan_pengajuan}</td>
-                        <td className="px-4 py-3">{row.tanggal_mulai}</td>
-                        <td className="px-4 py-3">{row.tanggal_selesai}</td>
-                        <td className="px-4 py-3">{row.hari_kerja}</td>
-                        <td className="px-4 py-3">{row.entrier}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.nip}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.nama_lengkap}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tipe}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.catatan_pengajuan}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_mulai}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_selesai}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.hari_kerja}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.entrier}</td>
                         <td className="px-4 py-3">{row.status_pengajuan}</td>
                     </tr>
                 ))}

@@ -79,22 +79,22 @@ function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
         <table className="min-w-full divide-y divide-black/10 text-left text-xs">
             <thead className="bg-white text-black text-sm">
                 <tr>
-                    <th className="px-4 py-3">NIP</th>
-                    <th className="px-4 py-3">Nama</th>
-                    <th className="px-4 py-3">Tanggal Lahir</th>
-                    <th className="px-4 py-3">Tanggal Masuk</th>
-                    <th className="px-4 py-3">No HP</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Nama</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Lahir</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Masuk</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">No HP</th>
                     <th className="px-4 py-3">Email</th>
                 </tr>
             </thead>
             <tbody className="divide-y divide-black/10 bg-white">
                 {rows.map((row) => (
                     <tr key={row.id}>
-                        <td className="px-4 py-3 font-medium text-black/70">{row.id}</td>
-                        <td className="px-4 py-3">{row.name}</td>
-                        <td className="px-4 py-3">{row.birthDate}</td>
-                        <td className="px-4 py-3">{row.joinDate}</td>
-                        <td className="px-4 py-3">{row.phoneNumber}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.name}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.birthDate}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.joinDate}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.phoneNumber}</td>
                         <td className="px-4 py-3">{row.email}</td>
                     </tr>
                 ))}

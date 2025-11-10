@@ -259,10 +259,10 @@ function ScheduleTable({ rows }: { rows: ScheduleRow[] }) {
       <table className="min-w-full divide-y divide-black/10 text-left text-xs">
         <thead className="bg-white text-black text-sm">
           <tr>
-            <th className="w-20 px-4 py-3 font-bold">NIP</th>
-            <th className="px-4 py-3 font-bold">Nama</th>
+            <th className="w-20 px-4 bg-white border-r border-black/10 py-3 font-bold">NIP</th>
+            <th className="px-4 bg-white border-r border-black/10 py-3 font-bold">Nama</th>
             {rows[0]?.days.map((day) => (
-              <th key={day} className="px-4 py-3 text-center font-bold">
+              <th key={day} className="px-4 bg-white border-l border-black/10 py-3 text-center font-bold">
                 {day}
               </th>
             ))}
@@ -271,10 +271,10 @@ function ScheduleTable({ rows }: { rows: ScheduleRow[] }) {
         <tbody className="divide-y divide-black/10 bg-white">
           {rows.map((row) => (
             <tr key={row.nip}>
-              <td className="px-4 py-3 font-regular">{row.nip}</td>
-              <td className="px-4 py-3 font-regular">{row.name}</td>
+              <td className="px-4 bg-white border-r border-black/10 py-3 font-regular">{row.nip}</td>
+              <td className="px-4 bg-white border-r border-black/10 py-3 font-regular">{row.name}</td>
               {row.days.map((day) => (
-                <td key={day} className="px-4 py-3 text-center">
+                <td key={day} className="px-4 bg-white border-l border-black/10 py-3 text-center">
                   <span className="inline-flex min-w-[50px] justify-center bg-[#43918B] px-1 py-1 text-xs font-semibold text-white">
                     WFO
                   </span>
@@ -293,26 +293,26 @@ function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
     <table className="min-w-full divide-y divide-black/10 text-left text-xs">
       <thead className="bg-white text-black text-sm">
         <tr>
-          <th className="px-4 py-3">#</th>
-          <th className="px-4 py-3">Tanggal</th>
-          <th className="px-4 py-3">Absensi</th>
-          <th className="px-4 py-3">Jam Masuk</th>
-          <th className="px-4 py-3">Jam Keluar</th>
-          <th className="px-4 py-3">Jam Kerja</th>
-          <th className="px-4 py-3">Sumber</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">#</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Absensi</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Jam Masuk</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Jam Keluar</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Jam Kerja</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Sumber</th>
           <th className="px-4 py-3">Status Absen</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-black/10 bg-white">
         {rows.map((row) => (
           <tr key={row.id}>
-            <td className="px-4 py-3 font-medium text-black/70">{row.id}</td>
-            <td className="px-4 py-3">{row.date}</td>
-            <td className="px-4 py-3">{row.status}</td>
-            <td className="px-4 py-3">{row.checkIn}</td>
-            <td className="px-4 py-3">{row.checkOut}</td>
-            <td className="px-4 py-3">{row.duration}</td>
-            <td className="px-4 py-3">{row.source}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.date}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.status}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.checkIn}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.checkOut}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.duration}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.source}</td>
             <td className="px-4 py-3">{row.approval}</td>
           </tr>
         ))}

@@ -91,24 +91,24 @@ function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
         <table className="min-w-full divide-y divide-black/10 text-left text-xs">
             <thead className="bg-white text-black text-sm">
                 <tr>
-                    <th className="px-4 py-3">Kode</th>
-                    <th className="px-4 py-3">NIP</th>
-                    <th className="px-4 py-3">Nama Pegawai</th>
-                    <th className="px-4 py-3">Status</th>
-                    <th className="px-4 py-3">Total</th>
-                    <th className="px-4 py-3">Entrier</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Kode</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Nama Pegawai</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Status</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Total</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Entrier</th>
                     <th className="px-4 py-3">Status Pembayaran</th>
                 </tr>
             </thead>
             <tbody className="divide-y divide-black/10 bg-white">
                 {rows.map((row) => (
                     <tr key={row.id}>
-                        <td className="px-4 py-3">{row.kode}</td>
-                        <td className="px-4 py-3 font-medium text-black/70">{row.nip}</td>
-                        <td className="px-4 py-3">{row.nama_pegawai}</td>
-                        <td className="px-4 py-3">{row.status}</td>
-                        <td className="px-4 py-3">{row.total}</td>
-                        <td className="px-4 py-3">{row.entrier}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.kode}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.nip}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.nama_pegawai}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.status}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.total}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.entrier}</td>
                         <td className="px-4 py-3">{row.status_pembayaran}</td>
                     </tr>
                 ))}

@@ -49,14 +49,14 @@ const menuItems: MenuItem[] = [
   {
     label: "Project",
     icon: Briefcase,
-    children: [{ label: "Acknowledge", href: "/project/acknowledge" }],
+    children: [{ label: "Acknowledge", href: "/acknowledge" }],
     defaultOpen: false,
   },
   {
     label: "Absensi",
     icon: FileText,
     children: [
-      { label: "Absensi Pegawai", href: "/absensi/pegawai" },
+      { label: "Absensi Pegawai", href: "/absensi/absensi-pegawai" },
       { label: "Rekap Realisasi", href: "/absensi/rekap-realisasi" },
     ],
     defaultOpen: false,

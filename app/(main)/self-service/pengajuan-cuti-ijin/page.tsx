@@ -95,28 +95,28 @@ function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
         <table className="min-w-full divide-y divide-black/10 text-left text-xs">
             <thead className="bg-white text-black text-sm">
                 <tr>
-                    <th className="px-4 py-3">Status</th>
-                    <th className="px-4 py-3">NIP</th>
-                    <th className="px-4 py-3">Tipe</th>
-                    <th className="px-4 py-3">Mulai Dari</th>
-                    <th className="px-4 py-3">Sampai Dengan</th>
-                    <th className="px-4 py-3">Hari Kerja</th>
-                    <th className="px-4 py-3">Keterangan</th>
-                    <th className="px-4 py-3">Approved Oleh</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Status</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Tipe</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Mulai Dari</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Sampai Dengan</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Hari Kerja</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Keterangan</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Approved Oleh</th>
                     <th className="px-4 py-3">Notes</th>
                 </tr>
             </thead>
             <tbody className="divide-y divide-black/10 bg-white">
                 {rows.map((row) => (
                     <tr key={row.id}>
-                        <td className="px-4 py-3">{row.status}</td>
-                        <td className="px-4 py-3 font-medium text-black/70">{row.id}</td>
-                        <td className="px-4 py-3">{row.tipe}</td>
-                        <td className="px-4 py-3">{row.mulai_dari}</td>
-                        <td className="px-4 py-3">{row.sampai_dengan}</td>
-                        <td className="px-4 py-3">{row.hari_kerja}</td>
-                        <td className="px-4 py-3">{row.keterangan}</td>
-                        <td className="px-4 py-3">{row.approved_oleh}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.status}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tipe}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.mulai_dari}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.sampai_dengan}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.hari_kerja}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.keterangan}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.approved_oleh}</td>
                         <td className="px-4 py-3">{row.notes}</td>
                     </tr>
                 ))}

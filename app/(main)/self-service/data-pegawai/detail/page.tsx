@@ -189,18 +189,17 @@ export default function DataPegawaiPage() {
                                     <table className="w-full">
                                         <thead className="bg-[#f7f7f7]">
                                             <tr>
-                                                <th className="px-4 py-3 text-left text-sm font-medium text-black/60 border-b border-black/10">#</th>
-                                                <th className="px-4 py-3 text-left text-sm font-medium text-black/60 border-b border-black/10">Jenis SIM</th>
-                                                <th className="px-4 py-3 text-left text-sm font-medium text-black/60 border-b border-black/10">No SIM</th>
+                                                <th className="px-4 py-3 bg-white border-r border-black/10 text-left text-sm font-medium text-black/60 border-b border-black/10">#</th>
+                                                <th className="px-4 py-3 bg-white border-r border-black/10 text-left text-sm font-medium text-black/60 border-b border-black/10">Jenis SIM</th>
+                                                <th className="px-4 py-3 bg-white border-r border-black/10 text-left text-sm font-medium text-black/60 border-b border-black/10">No SIM</th>
                                                 <th className="px-4 py-3 text-left text-sm font-medium text-black/60 border-b border-black/10">Exp Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr className="border-b border-black/10">
-                                                <td className="px-4 py-3 text-sm text-black">1</td>
-                                                <td className="px-4 py-3 text-sm text-black">-</td>
-                                                <td className="px-4 py-3 text-sm text-black">-</td>
-                                                <td className="px-4 py-3 text-sm text-black">-</td>
+                                            <tr className=" border-black/10">
+                                                <td className="px-4 py-3 bg-white border-r border-black/10 text-sm text-black">1</td>
+                                                <td className="px-4 py-3 bg-white border-r border-black/10 text-sm text-black">-</td>
+                                                <td className="px-4 py-3 bg-white border-r border-black/10 text-sm text-black">-</td>
                                             </tr>
                                         </tbody>
                                     </table>

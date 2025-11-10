@@ -60,21 +60,21 @@ function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
         <table className="min-w-full divide-y divide-black/10 text-left text-xs">
             <thead className="bg-white text-black text-sm">
                 <tr>
-                    <th className="px-4 py-3">#</th>
-                    <th className="px-4 py-3">Name</th>
-                    <th className="px-4 py-3">Deskripsi</th>
-                    <th className="px-4 py-3">Lokasi File</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">#</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Name</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Deskripsi</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10">Lokasi File</th>
                     <th className="px-4 py-3">Action</th>
                 </tr>
             </thead>
             <tbody className="divide-y divide-black/10 bg-white">
                 {rows.map((row) => (
                     <tr key={row.id}>
-                        <td className="px-4 py-3 font-medium text-black/70">{row.id}</td>
-                        <td className="px-4 py-3">{row.name}</td>
-                        <td className="px-4 py-3">{row.description}</td>
-                        <td className="px-4 py-3">{row.location}</td>
-                        <td className="px-4 py-3">{row.action}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.name}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.description}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.location}</td>
+                        <td className="px-4 py-3 bg-white">{row.action}</td>
                     </tr>
                 ))}
             </tbody>

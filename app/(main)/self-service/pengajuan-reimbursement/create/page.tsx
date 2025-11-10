@@ -25,20 +25,20 @@ function ReimbursementTable({ rows }: { rows: ReimbursementRow[] }) {
             <table className="min-w-full divide-y divide-black/10 text-left text-xs">
                 <thead className="bg-white text-black text-sm">
                     <tr>
-                        <th className="px-4 py-3">Kode</th>
-                        <th className="px-4 py-3">Tanggal Struk</th>
-                        <th className="px-4 py-3">Penerima</th>
-                        <th className="px-4 py-3">Deskripsi</th>
+                        <th className="px-4 py-3 bg-white border-r border-black/10">Kode</th>
+                        <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Struk</th>
+                        <th className="px-4 py-3 bg-white border-r border-black/10">Penerima</th>
+                        <th className="px-4 py-3 bg-white border-r border-black/10">Deskripsi</th>
                         <th className="px-4 py-3">Nilai</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-black/10 bg-white">
                     {rows.map((row, index) => (
                         <tr key={index}>
-                            <td className="px-4 py-3">{row.kode}</td>
-                            <td className="px-4 py-3">{row.tanggal_struk}</td>
-                            <td className="px-4 py-3">{row.penerima}</td>
-                            <td className="px-4 py-3">{row.deskripsi}</td>
+                            <td className="px-4 py-3 bg-white border-r border-black/10">{row.kode}</td>
+                            <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_struk}</td>
+                            <td className="px-4 py-3 bg-white border-r border-black/10">{row.penerima}</td>
+                            <td className="px-4 py-3 bg-white border-r border-black/10">{row.deskripsi}</td>
                             <td className="px-4 py-3">{row.nilai}</td>
                         </tr>
                     ))}

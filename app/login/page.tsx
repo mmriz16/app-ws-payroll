@@ -28,7 +28,7 @@ export default function LoginPage() {
           priority
           className="object-cover"
         />
-        <div className="absolute bottom-6 left-6 max-w-lg rounded-md bg-white p-6 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.35)]">
+        <div className="absolute bottom-6 left-6 max-w-lg bg-white p-6 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.35)]">
           <h2 className="text-2xl font-bold text-black">GenHR. Simplify the process</h2>
           <p className="mt-2 text-base text-black/80">
             2018 Innovis Cipta Teknologi
