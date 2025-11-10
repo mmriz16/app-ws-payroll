@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
-import { AlertTriangle, Search } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-};
+import { useState } from "react";
+import { AlertTriangle, Search } from "lucide-react";
 
 const currentWeekSchedule = [
   {
@@ -51,6 +49,27 @@ type AttendanceRow = {
   duration: string;
   source: string;
   approval: string;
+};
+
+type CutiRow = {
+  id: string;
+  cuti: string;
+  mulai_dari: string;
+  sampai_dengan: string;
+  tanggal_approval: string;
+  approved_oleh: string;
+  notes: string;
+};
+
+
+type ReimburseRow = {
+  id: string;
+  nip: string;
+  nama: string;
+  kode: string;
+  status: string;
+  status_pembayaran: string;
+  catatan: string;
 };
 
 const attendanceRows: AttendanceRow[] = [
@@ -156,7 +175,287 @@ const attendanceRows: AttendanceRow[] = [
   },
 ];
 
+const cutiRows: CutiRow[] = [
+  {
+    id: "01",
+    cuti: "Cuti Tahunan",
+    mulai_dari: "01 Nov 2025",
+    sampai_dengan: "05 Nov 2025",
+    tanggal_approval: "01 Nov 2025",
+    approved_oleh: "Admin",
+    notes: "Cuti tahunan",
+  },
+  {
+    id: "02",
+    cuti: "Cuti Melahirkan",
+    mulai_dari: "10 Nov 2025",
+    sampai_dengan: "20 Nov 2025",
+    tanggal_approval: "09 Nov 2025",
+    approved_oleh: "Manager",
+    notes: "Cuti melahirkan",
+  },
+  {
+    id: "03",
+    cuti: "Cuti Sakit",
+    mulai_dari: "15 Nov 2025",
+    sampai_dengan: "16 Nov 2025",
+    tanggal_approval: "15 Nov 2025",
+    approved_oleh: "HR",
+    notes: "Sakit demam",
+  },
+  {
+    id: "04",
+    cuti: "Cuti Tidak Dibayar",
+    mulai_dari: "22 Nov 2025",
+    sampai_dengan: "24 Nov 2025",
+    tanggal_approval: "21 Nov 2025",
+    approved_oleh: "Supervisor",
+    notes: "Urusan keluarga",
+  },
+  {
+    id: "05",
+    cuti: "Cuti Tahunan",
+    mulai_dari: "01 Dec 2025",
+    sampai_dengan: "03 Dec 2025",
+    tanggal_approval: "30 Nov 2025",
+    approved_oleh: "Admin",
+    notes: "Cuti akhir tahun",
+  },
+  {
+    id: "06",
+    cuti: "Dinas",
+    mulai_dari: "05 Dec 2025",
+    sampai_dengan: "07 Dec 2025",
+    tanggal_approval: "04 Dec 2025",
+    approved_oleh: "Manager",
+    notes: "Dinas luar kota",
+  },
+  {
+    id: "07",
+    cuti: "Cuti Tahunan",
+    mulai_dari: "10 Dec 2025",
+    sampai_dengan: "12 Dec 2025",
+    tanggal_approval: "09 Dec 2025",
+    approved_oleh: "HR",
+    notes: "Cuti liburan",
+  },
+  {
+    id: "08",
+    cuti: "Cuti Sakit",
+    mulai_dari: "18 Dec 2025",
+    sampai_dengan: "19 Dec 2025",
+    tanggal_approval: "18 Dec 2025",
+    approved_oleh: "Supervisor",
+    notes: "Sakit kepala",
+  },
+  {
+    id: "09",
+    cuti: "Cuti Tahunan",
+    mulai_dari: "25 Dec 2025",
+    sampai_dengan: "27 Dec 2025",
+    tanggal_approval: "24 Dec 2025",
+    approved_oleh: "Admin",
+    notes: "Cuti natal",
+  },
+  {
+    id: "10",
+    cuti: "Cuti Tidak Dibayar",
+    mulai_dari: "30 Dec 2025",
+    sampai_dengan: "31 Dec 2025",
+    tanggal_approval: "29 Dec 2025",
+    approved_oleh: "Manager",
+    notes: "Urusan pribadi",
+  },
+];
+
+const reimburseRows: ReimburseRow[] = [
+  {
+    id: "01",
+    nip: "00164",
+    nama: "Miftakhul Rizky",
+    kode: "REIM-001",
+    status: "Approved",
+    status_pembayaran: "Sudah Dibayar",
+    catatan: "Transportasi",
+  },
+  {
+    id: "02",
+    nip: "00172",
+    nama: "Ananda Putri",
+    kode: "REIM-002",
+    status: "Pending",
+    status_pembayaran: "Belum Dibayar",
+    catatan: "Makan siang",
+  },
+  {
+    id: "03",
+    nip: "00188",
+    nama: "Bagus Pratama",
+    kode: "REIM-003",
+    status: "Approved",
+    status_pembayaran: "Sudah Dibayar",
+    catatan: "Parkir",
+  },
+  {
+    id: "04",
+    nip: "00164",
+    nama: "Miftakhul Rizky",
+    kode: "REIM-004",
+    status: "Rejected",
+    status_pembayaran: "Belum Dibayar",
+    catatan: "Hotel",
+  },
+  {
+    id: "05",
+    nip: "00172",
+    nama: "Ananda Putri",
+    kode: "REIM-005",
+    status: "Approved",
+    status_pembayaran: "Sudah Dibayar",
+    catatan: "Tol",
+  },
+  {
+    id: "06",
+    nip: "00188",
+    nama: "Bagus Pratama",
+    kode: "REIM-006",
+    status: "Pending",
+    status_pembayaran: "Belum Dibayar",
+    catatan: "Bensin",
+  },
+  {
+    id: "07",
+    nip: "00164",
+    nama: "Miftakhul Rizky",
+    kode: "REIM-007",
+    status: "Approved",
+    status_pembayaran: "Sudah Dibayar",
+    catatan: "Makan malam",
+  },
+  {
+    id: "08",
+    nip: "00172",
+    nama: "Ananda Putri",
+    kode: "REIM-008",
+    status: "Approved",
+    status_pembayaran: "Belum Dibayar",
+    catatan: "Tiket pesawat",
+  },
+  {
+    id: "09",
+    nip: "00188",
+    nama: "Bagus Pratama",
+    kode: "REIM-009",
+    status: "Pending",
+    status_pembayaran: "Belum Dibayar",
+    catatan: "Taxi",
+  },
+  {
+    id: "10",
+    nip: "00164",
+    nama: "Miftakhul Rizky",
+    kode: "REIM-010",
+    status: "Approved",
+    status_pembayaran: "Sudah Dibayar",
+    catatan: "Internet",
+  },
+];
+
+
+
 export default function DashboardPage() {
+  const [activeTab, setActiveTab] = useState("Absensi");
+
+  const tabs = ["Absensi", "Cuti", "Reimburse", "Team Calendar"];
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "Absensi":
+        return (
+          <div className="flex flex-col gap-6 p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <label className="flex w-sm items-center gap-3  border border-black/10 bg-[#f7f7f7] px-4 py-3 text-sm text-black/60">
+                <Search className="h-4 w-4" />
+                <input
+                  type="text"
+                  placeholder="Enter text to search..."
+                  className="w-full bg-transparent text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
+                />
+              </label>
+              <div className="flex items-center gap-3 text-xs">
+                <span>Jam Kerja Anda</span>
+                <span className=" bg-[#43918B] px-3 py-1 text-white">
+                  6 Jam 25 Menit
+                </span>
+              </div>
+            </div>
+
+            <div className="overflow-hidden  border border-black/10">
+              <AttendanceTable rows={attendanceRows} />
+            </div>
+          </div>
+        );
+      case "Cuti":
+        return (
+          <div className="flex flex-col gap-6 p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <label className="flex w-sm items-center gap-3  border border-black/10 bg-[#f7f7f7] px-4 py-3 text-sm text-black/60">
+                <Search className="h-4 w-4" />
+                <input
+                  type="text"
+                  placeholder="Enter text to search..."
+                  className="w-full bg-transparent text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
+                />
+              </label>
+              <div className="flex items-center gap-3 text-xs">
+                <span>Jam Kerja Anda</span>
+                <span className=" bg-[#43918B] px-3 py-1 text-white">
+                  6 Jam 25 Menit
+                </span>
+              </div>
+            </div>
+
+            <div className="overflow-hidden  border border-black/10">
+              <CutiTable rows={cutiRows} />
+            </div>
+          </div>
+        );
+      case "Reimburse":
+        return (
+          <div className="flex flex-col gap-6 p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <label className="flex w-sm items-center gap-3  border border-black/10 bg-[#f7f7f7] px-4 py-3 text-sm text-black/60">
+                <Search className="h-4 w-4" />
+                <input
+                  type="text"
+                  placeholder="Enter text to search..."
+                  className="w-full bg-transparent text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
+                />
+              </label>
+              <div className="flex items-center gap-3 text-xs">
+                <span>Jam Kerja Anda</span>
+                <span className=" bg-[#43918B] px-3 py-1 text-white">
+                  6 Jam 25 Menit
+                </span>
+              </div>
+            </div>
+
+            <div className="overflow-hidden  border border-black/10">
+              <ReimburseTable rows={reimburseRows} />
+            </div>
+          </div>
+        );
+      case "Team Calendar":
+        return (
+          <div className="flex flex-col gap-6 p-6">
+            <TeamCalendar />
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="flex flex-1 flex-col text-black">
       <section className="flex flex-1 flex-col gap-6 p-6">
@@ -206,41 +505,21 @@ export default function DashboardPage() {
 
         <div className=" border border-black/10 bg-white">
           <div className="flex items-center gap-1 border-b border-black/10">
-            {["Absensi", "Cuti", "Reimburse", "Team Calendar"].map((tab) => (
+            {tabs.map((tab) => (
               <button
                 key={tab}
                 type="button"
-                className={`h-14 min-w-[120px] border-b-2 px-6 text-sm font-medium transition ${tab === "Absensi"
-                    ? "border-[#43918B] text-black"
-                    : "border-transparent text-black/50"
+                onClick={() => setActiveTab(tab)}
+                className={`h-14 min-w-[120px] border-b-2 px-6 text-sm font-medium transition ${activeTab === tab
+                  ? "border-[#43918B] text-black"
+                  : "border-transparent text-black/50 hover:text-black/70"
                   }`}
               >
                 {tab}
               </button>
             ))}
           </div>
-          <div className="flex flex-col gap-6 p-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <label className="flex w-sm items-center gap-3  border border-black/10 bg-[#f7f7f7] px-4 py-3 text-sm text-black/60">
-                <Search className="h-4 w-4" />
-                <input
-                  type="text"
-                  placeholder="Enter text to search..."
-                  className="w-full bg-transparent text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
-                />
-              </label>
-              <div className="flex items-center gap-3 text-xs">
-                <span>Jam Kerja Anda</span>
-                <span className=" bg-[#43918B] px-3 py-1 text-white">
-                  6 Jam 25 Menit
-                </span>
-              </div>
-            </div>
-
-            <div className="overflow-hidden  border border-black/10">
-              <AttendanceTable rows={attendanceRows} />
-            </div>
-          </div>
+          {renderTabContent()}
         </div>
       </section>
     </div>
@@ -318,5 +597,139 @@ function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
         ))}
       </tbody>
     </table>
+  );
+}
+
+function CutiTable({ rows }: { rows: CutiRow[] }) {
+  return (
+    <table className="min-w-full divide-y divide-black/10 text-left text-xs">
+      <thead className="bg-white text-black text-sm">
+        <tr>
+          <th className="px-4 py-3 bg-white border-r border-black/10">#</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Cuti</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Mulai Dari</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Sampai Dengan</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Approval</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Approved Oleh</th>
+          <th className="px-4 py-3">Notes</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-black/10 bg-white">
+        {rows.map((row) => (
+          <tr key={row.id}>
+            <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.cuti}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.mulai_dari}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.sampai_dengan}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_approval}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.approved_oleh}</td>
+            <td className="px-4 py-3">{row.notes}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+function ReimburseTable({ rows }: { rows: ReimburseRow[] }) {
+  return (
+    <table className="min-w-full divide-y divide-black/10 text-left text-xs">
+      <thead className="bg-white text-black text-sm">
+        <tr>
+          <th className="px-4 py-3 bg-white border-r border-black/10">#</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Nama</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Kode</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Status</th>
+          <th className="px-4 py-3 bg-white border-r border-black/10">Status Pembayaran</th>
+          <th className="px-4 py-3">Catatan</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-black/10 bg-white">
+        {rows.map((row) => (
+          <tr key={row.id}>
+            <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.nip}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.nama}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.kode}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.status}</td>
+            <td className="px-4 py-3 bg-white border-r border-black/10">{row.status_pembayaran}</td>
+            <td className="px-4 py-3">{row.catatan}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+function TeamCalendar() {
+  const daysOfWeek = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+  
+  // Generate days for November 2025 (30 days)
+  // November 1, 2025 is Saturday, so we need 5 empty cells (Mon-Fri) before it
+  const daysInMonth = 30;
+  const days = [];
+  
+  // Add empty cells for days before the 1st
+  // November 1, 2025 is Saturday, so we need 5 empty cells (Mon-Fri)
+  for (let i = 0; i < 5; i++) {
+    days.push(null);
+  }
+  
+  // Add all days of the month
+  for (let day = 1; day <= daysInMonth; day++) {
+    days.push(day);
+  }
+  
+  // Add empty cells to fill the last week (if needed)
+  const remainingCells = 42 - days.length; // 6 rows * 7 days = 42 cells
+  for (let i = 0; i < remainingCells; i++) {
+    days.push(null);
+  }
+
+  return (
+    <div className="border border-black/10 bg-white">
+      <div className="border-b border-black/10 p-4">
+        <h3 className="text-lg font-medium">November 2025</h3>
+      </div>
+      <div className="grid grid-cols-7 divide-x divide-y divide-black/10">
+        {/* Header days */}
+        {daysOfWeek.map((day) => (
+          <div key={day} className="bg-[#f7f7f7] px-4 py-3 text-center text-sm font-medium text-black/60">
+            {day}
+          </div>
+        ))}
+        {/* Calendar days */}
+        {days.map((day, index) => (
+          <div
+            key={index}
+            className="min-h-[100px] border-r border-black/10 p-2 text-sm"
+          >
+            {day && (
+              <>
+                <div className="font-medium text-black">{day}</div>
+                <div className="mt-1 space-y-1">
+                  {day === 1 && (
+                    <div className="rounded bg-[#43918B] px-2 py-1 text-xs text-white">
+                      Event
+                    </div>
+                  )}
+                  {day === 15 && (
+                    <div className="rounded bg-blue-500 px-2 py-1 text-xs text-white">
+                      Meeting
+                    </div>
+                  )}
+                  {day === 25 && (
+                    <div className="rounded bg-orange-500 px-2 py-1 text-xs text-white">
+                      Deadline
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
