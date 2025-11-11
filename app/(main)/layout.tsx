@@ -1,4 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { useState } from "react";
 import SideMenu from "../components/sidemenu";
 import TopBar from "../components/topbar";
 
@@ -7,11 +10,21 @@ export default function MainLayout({
 }: {
   children: ReactNode;
 }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="flex min-h-screen items-start bg-[#1c2029] text-white">
-      <SideMenu />
-      <div className="flex h-screen flex-1 flex-col overflow-y-auto bg-[#f7f7f7] text-black">
-        <TopBar />
+      <SideMenu isOpen={isMenuOpen} onClose={closeMenu} />
+      <div className="flex h-screen flex-1 flex-col overflow-y-auto bg-[#f7f7f7] text-black lg:ml-0">
+        <TopBar onMenuToggle={toggleMenu} />
         <main className="flex-1">{children}</main>
       </div>
     </div>

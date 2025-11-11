@@ -1,5 +1,4 @@
 
-import { Plus } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -46,8 +45,8 @@ const employees: EmployeeRow[] = [
 export default function DataPegawaiPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
-            <section className="flex flex-1 flex-col gap-6 p-6">
-                <div className="flex items-center gap-2 text-sm text-black/60">
+            <section className="flex flex-1 flex-col gap-4 md:gap-6 p-3 md:p-6">
+                <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
                     <span>Self Service</span>
@@ -55,17 +54,17 @@ export default function DataPegawaiPage() {
                     <span className="font-medium text-[#43918B]">Data Pegawai</span>
                 </div>
 
-                <div className="flex flex-col gap-4 border border-black/10 bg-white p-6">
-                    <div className="flex items-center justify-between gap-2">
-                        <h2 className="text-lg font-medium">Data Pegawai</h2>
+                <div className="flex flex-col gap-3 md:gap-4 border border-black/10 bg-white p-3 md:p-6">
+                    <div className="flex flex-row md:flex-row sm:flex-col sm:items-center items-center justify-between gap-3 md:gap-2">
+                        <h2 className="text-base md:text-lg font-medium">Data Pegawai</h2>
                         <Link
                             href="/self-service/data-pegawai/detail"
-                            className="flex items-center justify-center h-[54px] w-fit border border-black/10 bg-[#43918B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4aa098]"
+                            className="flex items-center justify-center h-11 md:h-[54px] w-[150px] sm:w-fit border border-black/10 bg-[#43918B] px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-white transition hover:bg-[#4aa098] active:bg-[#3d8a82]"
                         >
                             Detail Pegawai
                         </Link>
                     </div>
-                    <div className="overflow-hidden  border border-black/10">
+                    <div className="overflow-x-auto border border-black/10">
                         <EmployeeTable rows={employees} />
                     </div>
                 </div>
@@ -76,29 +75,31 @@ export default function DataPegawaiPage() {
 
 function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
     return (
-        <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-            <thead className="bg-white text-black text-sm">
-                <tr>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Nama</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Lahir</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Masuk</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">No HP</th>
-                    <th className="px-4 py-3">Email</th>
-                </tr>
-            </thead>
-            <tbody className="divide-y divide-black/10 bg-white">
-                {rows.map((row) => (
-                    <tr key={row.id}>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.name}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.birthDate}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.joinDate}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.phoneNumber}</td>
-                        <td className="px-4 py-3">{row.email}</td>
+        <div className="min-w-[800px]">
+            <table className="min-w-full divide-y divide-black/10 text-left text-xs">
+                <thead className="bg-white text-black text-sm">
+                    <tr>
+                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10">NIP</th>
+                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10">Nama</th>
+                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">Tanggal Lahir</th>
+                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">Tanggal Masuk</th>
+                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">No HP</th>
+                        <th className="px-2 md:px-4 py-2 md:py-3 whitespace-nowrap">Email</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody className="divide-y divide-black/10 bg-white">
+                    {rows.map((row) => (
+                        <tr key={row.id}>
+                            <td className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+                            <td className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10">{row.name}</td>
+                            <td className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[10px] md:text-xs">{row.birthDate}</td>
+                            <td className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[10px] md:text-xs">{row.joinDate}</td>
+                            <td className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[10px] md:text-xs">{row.phoneNumber}</td>
+                            <td className="px-2 md:px-4 py-2 md:py-3 whitespace-nowrap text-[10px] md:text-xs break-all">{row.email}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 }

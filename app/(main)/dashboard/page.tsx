@@ -372,82 +372,88 @@ export default function DashboardPage() {
     switch (activeTab) {
       case "Absensi":
         return (
-          <div className="flex flex-col gap-6 p-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <label className="flex w-sm items-center gap-3  border border-black/10 bg-[#f7f7f7] px-4 py-3 text-sm text-black/60">
-                <Search className="h-4 w-4" />
+          <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
+            <div className="flex flex-row items-center justify-between gap-2.5 sm:gap-3 md:gap-4 md:flex-row md:items-center md:justify-between">
+              <label className="flex w-full md:w-sm items-center gap-2 sm:gap-2.5 md:gap-3 border border-black/10 bg-[#f7f7f7] px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-[10px] sm:text-xs md:text-sm text-black/60">
+                <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 shrink-0" />
                 <input
                   type="text"
                   placeholder="Enter text to search..."
-                  className="w-full bg-transparent text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
+                  className="w-full bg-transparent text-[10px] sm:text-xs md:text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
                 />
               </label>
-              <div className="flex items-center gap-3 text-xs">
-                <span>Jam Kerja Anda</span>
-                <span className=" bg-[#43918B] px-3 py-1 text-white">
+              <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 text-[10px] sm:text-xs">
+                <span className="whitespace-nowrap">Jam Kerja Anda</span>
+                <span className="bg-[#43918B] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs">
                   6 Jam 25 Menit
                 </span>
               </div>
             </div>
 
-            <div className="overflow-hidden  border border-black/10">
-              <AttendanceTable rows={attendanceRows} />
+            <div className="overflow-x-auto border border-black/10">
+              <div className="min-w-[800px]">
+                <AttendanceTable rows={attendanceRows} />
+              </div>
             </div>
           </div>
         );
       case "Cuti":
         return (
-          <div className="flex flex-col gap-6 p-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <label className="flex w-sm items-center gap-3  border border-black/10 bg-[#f7f7f7] px-4 py-3 text-sm text-black/60">
-                <Search className="h-4 w-4" />
+          <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
+            <div className="flex flex-row items-center justify-between gap-2.5 sm:gap-3 md:gap-4 md:flex-row md:items-center md:justify-between">
+              <label className="flex w-full md:w-sm items-center gap-2 sm:gap-2.5 md:gap-3 border border-black/10 bg-[#f7f7f7] px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-[10px] sm:text-xs md:text-sm text-black/60">
+                <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 shrink-0" />
                 <input
                   type="text"
                   placeholder="Enter text to search..."
-                  className="w-full bg-transparent text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
+                  className="w-full bg-transparent text-[10px] sm:text-xs md:text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
                 />
               </label>
-              <div className="flex items-center gap-3 text-xs">
-                <span>Jam Kerja Anda</span>
-                <span className=" bg-[#43918B] px-3 py-1 text-white">
+              <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 text-[10px] sm:text-xs">
+                <span className="whitespace-nowrap">Jam Kerja Anda</span>
+                <span className="bg-[#43918B] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs">
                   6 Jam 25 Menit
                 </span>
               </div>
             </div>
 
-            <div className="overflow-hidden  border border-black/10">
-              <CutiTable rows={cutiRows} />
+            <div className="overflow-x-auto border border-black/10">
+              <div className="min-w-[800px]">
+                <CutiTable rows={cutiRows} />
+              </div>
             </div>
           </div>
         );
       case "Reimburse":
         return (
-          <div className="flex flex-col gap-6 p-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <label className="flex w-sm items-center gap-3  border border-black/10 bg-[#f7f7f7] px-4 py-3 text-sm text-black/60">
-                <Search className="h-4 w-4" />
+          <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
+            <div className="flex flex-row items-center justify-between gap-2.5 sm:gap-3 md:gap-4 md:flex-row md:items-center md:justify-between">
+              <label className="flex w-full md:w-sm items-center gap-2 sm:gap-2.5 md:gap-3 border border-black/10 bg-[#f7f7f7] px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-[10px] sm:text-xs md:text-sm text-black/60">
+                <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 shrink-0" />
                 <input
                   type="text"
                   placeholder="Enter text to search..."
-                  className="w-full bg-transparent text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
+                  className="w-full bg-transparent text-[10px] sm:text-xs md:text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
                 />
               </label>
-              <div className="flex items-center gap-3 text-xs">
-                <span>Jam Kerja Anda</span>
-                <span className=" bg-[#43918B] px-3 py-1 text-white">
+              <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 text-[10px] sm:text-xs">
+                <span className="whitespace-nowrap">Jam Kerja Anda</span>
+                <span className="bg-[#43918B] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs">
                   6 Jam 25 Menit
                 </span>
               </div>
             </div>
 
-            <div className="overflow-hidden  border border-black/10">
-              <ReimburseTable rows={reimburseRows} />
+            <div className="overflow-x-auto border border-black/10">
+              <div className="min-w-[800px]">
+                <ReimburseTable rows={reimburseRows} />
+              </div>
             </div>
           </div>
         );
       case "Team Calendar":
         return (
-          <div className="flex flex-col gap-6 p-6">
+          <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
             <TeamCalendar />
           </div>
         );
@@ -458,44 +464,44 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-1 flex-col text-black">
-      <section className="flex flex-1 flex-col gap-6 p-6">
-        <div className="flex items-center gap-2 text-sm text-black/60">
+      <section className="flex flex-1 flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
+        <div className="flex items-center gap-1.5 text-[10px] sm:text-xs md:text-sm text-black/60">
           <span>Home</span>
           <span>/</span>
           <span className="font-medium text-[#43918B]">Dashboard</span>
         </div>
 
-        <div className=" border border-black/10 bg-white p-6">
-          <h1 className="text-xl font-medium">Dashboard</h1>
+        <div className="border border-black/10 bg-white p-3 sm:p-4 md:p-6">
+          <h1 className="text-base sm:text-lg md:text-xl font-medium">Dashboard</h1>
         </div>
 
-        <div className=" border border-black/10 bg-white p-6">
-          <h2 className="text-lg font-medium">Jadwal Minggu Ini</h2>
+        <div className="border border-black/10 bg-white p-3 sm:p-4 md:p-6">
+          <h2 className="text-sm sm:text-base md:text-lg font-medium">Jadwal Minggu Ini</h2>
           <ScheduleTable rows={currentWeekSchedule} />
-          <h2 className="mt-6 text-lg font-medium">Jadwal Minggu Depan</h2>
+          <h2 className="mt-3 sm:mt-4 md:mt-6 text-sm sm:text-base md:text-lg font-medium">Jadwal Minggu Depan</h2>
           <ScheduleTable rows={nextWeekSchedule} />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-2.5 sm:gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {metrics.map((metric) => (
             <div
               key={metric.title}
-              className={`${metric.background}  border border-black/10 p-6 text-white`}
+              className={`${metric.background} border border-black/10 p-3 sm:p-4 md:p-6 text-white`}
             >
-              <p className="text-2xl font-medium">{metric.title}</p>
-              <div className="mt-2 flex items-baseline gap-2 text-3xl font-normal">
+              <p className="text-base sm:text-lg md:text-2xl font-medium">{metric.title}</p>
+              <div className="mt-1.5 sm:mt-2 flex items-baseline gap-2 text-xl sm:text-2xl md:text-3xl font-normal">
                 <span>{metric.value}</span>
               </div>
-              <p className="mt-2 text-sm font-light text-white/80">
+              <p className="mt-1.5 sm:mt-2 text-[10px] sm:text-xs md:text-sm font-light text-white/80">
                 {metric.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="flex items-start gap-3 border border-red-100 bg-linear-to-r from-[#ff000009] to-[#ff000009] p-6 text-red-600">
-          <AlertTriangle className="h-6 w-6 shrink-0" />
-          <p className="text-sm font-light leading-6">
+        <div className="flex items-start gap-2 sm:gap-2.5 md:gap-3 border border-red-100 bg-linear-to-r from-[#ff000009] to-[#ff000009] p-3 sm:p-4 md:p-6 text-red-600">
+          <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0 mt-0.5" />
+          <p className="text-[10px] sm:text-xs md:text-sm font-light leading-4 sm:leading-5 md:leading-6">
             Per 19 Maret 2025, untuk WFO absen menggunakan mesin finger print
             masuk, Check In untuk absen masuk dan Check Out untuk absen pulang !!
             || Pengisian RENCANA dan REALISASI dilakukan melalui Wipro dan
@@ -503,16 +509,16 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className=" border border-black/10 bg-white">
-          <div className="flex items-center gap-1 border-b border-black/10">
+        <div className="border border-black/10 bg-white">
+          <div className="flex items-center gap-0.5 sm:gap-1 border-b border-black/10 overflow-x-auto">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`h-14 min-w-[120px] border-b-2 px-6 text-sm font-medium transition ${activeTab === tab
+                className={`h-11 sm:h-12 md:h-14 min-w-[90px] sm:min-w-[100px] md:min-w-[120px] border-b-2 px-3 sm:px-4 md:px-6 text-[10px] sm:text-xs md:text-sm font-medium transition whitespace-nowrap active:bg-black/5 ${activeTab === tab
                   ? "border-[#43918B] text-black"
-                  : "border-transparent text-black/50 hover:text-black/70"
+                  : "border-transparent text-black/50 active:text-black/70"
                   }`}
               >
                 {tab}
@@ -534,65 +540,67 @@ type ScheduleRow = {
 
 function ScheduleTable({ rows }: { rows: ScheduleRow[] }) {
   return (
-    <div className="mt-4 overflow-hidden  border border-black/10">
-      <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-        <thead className="bg-white text-black text-sm">
-          <tr>
-            <th className="w-20 px-4 bg-white border-r border-black/10 py-3 font-bold">NIP</th>
-            <th className="px-4 bg-white border-r border-black/10 py-3 font-bold">Nama</th>
-            {rows[0]?.days.map((day) => (
-              <th key={day} className="px-4 bg-white border-l border-black/10 py-3 text-center font-bold">
-                {day}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-black/10 bg-white">
-          {rows.map((row) => (
-            <tr key={row.nip}>
-              <td className="px-4 bg-white border-r border-black/10 py-3 font-regular">{row.nip}</td>
-              <td className="px-4 bg-white border-r border-black/10 py-3 font-regular">{row.name}</td>
-              {row.days.map((day) => (
-                <td key={day} className="px-4 bg-white border-l border-black/10 py-3 text-center">
-                  <span className="inline-flex min-w-[50px] justify-center bg-[#43918B] px-1 py-1 text-xs font-semibold text-white">
-                    WFO
-                  </span>
-                </td>
+    <div className="mt-3 sm:mt-4 overflow-x-auto border border-black/10 -mx-3 sm:-mx-4 md:mx-0">
+      <div className="min-w-[600px]">
+        <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
+          <thead className="bg-white text-black text-xs sm:text-sm">
+            <tr>
+              <th className="w-14 sm:w-16 md:w-20 px-1.5 sm:px-2 md:px-4 bg-white border-r border-black/10 py-1.5 sm:py-2 md:py-3 font-bold">NIP</th>
+              <th className="px-1.5 sm:px-2 md:px-4 bg-white border-r border-black/10 py-1.5 sm:py-2 md:py-3 font-bold">Nama</th>
+              {rows[0]?.days.map((day) => (
+                <th key={day} className="px-1 sm:px-2 md:px-4 bg-white border-l border-black/10 py-1.5 sm:py-2 md:py-3 text-center font-bold text-[9px] sm:text-[10px] md:text-xs">
+                  {day}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-black/10 bg-white">
+            {rows.map((row) => (
+              <tr key={row.nip}>
+                <td className="px-1.5 sm:px-2 md:px-4 bg-white border-r border-black/10 py-1.5 sm:py-2 md:py-3 font-regular">{row.nip}</td>
+                <td className="px-1.5 sm:px-2 md:px-4 bg-white border-r border-black/10 py-1.5 sm:py-2 md:py-3 font-regular">{row.name}</td>
+                {row.days.map((day) => (
+                  <td key={day} className="px-1 sm:px-2 md:px-4 bg-white border-l border-black/10 py-1.5 sm:py-2 md:py-3 text-center">
+                    <span className="inline-flex min-w-[35px] sm:min-w-[40px] md:min-w-[50px] justify-center bg-[#43918B] px-0.5 sm:px-1 py-0.5 sm:py-1 text-[9px] sm:text-[10px] md:text-xs font-semibold text-white">
+                      WFO
+                    </span>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
 
 function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
   return (
-    <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-      <thead className="bg-white text-black text-sm">
+    <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
+      <thead className="bg-white text-black text-xs sm:text-sm">
         <tr>
-          <th className="px-4 py-3 bg-white border-r border-black/10">#</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Absensi</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Jam Masuk</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Jam Keluar</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Jam Kerja</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Sumber</th>
-          <th className="px-4 py-3">Status Absen</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">#</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Tanggal</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Absensi</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Jam Masuk</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Jam Keluar</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Jam Kerja</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Sumber</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">Status Absen</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-black/10 bg-white">
         {rows.map((row) => (
           <tr key={row.id}>
-            <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.date}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.status}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.checkIn}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.checkOut}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.duration}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.source}</td>
-            <td className="px-4 py-3">{row.approval}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.date}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.status}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs">{row.checkIn}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs">{row.checkOut}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs">{row.duration}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.source}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">{row.approval}</td>
           </tr>
         ))}
       </tbody>
@@ -602,28 +610,28 @@ function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
 
 function CutiTable({ rows }: { rows: CutiRow[] }) {
   return (
-    <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-      <thead className="bg-white text-black text-sm">
+    <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
+      <thead className="bg-white text-black text-xs sm:text-sm">
         <tr>
-          <th className="px-4 py-3 bg-white border-r border-black/10">#</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Cuti</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Mulai Dari</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Sampai Dengan</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Approval</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Approved Oleh</th>
-          <th className="px-4 py-3">Notes</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">#</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Cuti</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Mulai Dari</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Sampai Dengan</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Tanggal Approval</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Approved Oleh</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">Notes</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-black/10 bg-white">
         {rows.map((row) => (
           <tr key={row.id}>
-            <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.cuti}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.mulai_dari}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.sampai_dengan}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_approval}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.approved_oleh}</td>
-            <td className="px-4 py-3">{row.notes}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.cuti}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.mulai_dari}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.sampai_dengan}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.tanggal_approval}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.approved_oleh}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">{row.notes}</td>
           </tr>
         ))}
       </tbody>
@@ -633,28 +641,28 @@ function CutiTable({ rows }: { rows: CutiRow[] }) {
 
 function ReimburseTable({ rows }: { rows: ReimburseRow[] }) {
   return (
-    <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-      <thead className="bg-white text-black text-sm">
+    <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
+      <thead className="bg-white text-black text-xs sm:text-sm">
         <tr>
-          <th className="px-4 py-3 bg-white border-r border-black/10">#</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Nama</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Kode</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Status</th>
-          <th className="px-4 py-3 bg-white border-r border-black/10">Status Pembayaran</th>
-          <th className="px-4 py-3">Catatan</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">#</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">NIP</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Nama</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Kode</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Status</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Status Pembayaran</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">Catatan</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-black/10 bg-white">
         {rows.map((row) => (
           <tr key={row.id}>
-            <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.nip}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.nama}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.kode}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.status}</td>
-            <td className="px-4 py-3 bg-white border-r border-black/10">{row.status_pembayaran}</td>
-            <td className="px-4 py-3">{row.catatan}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.nip}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.nama}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.kode}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.status}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.status_pembayaran}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">{row.catatan}</td>
           </tr>
         ))}
       </tbody>
@@ -688,47 +696,49 @@ function TeamCalendar() {
   }
 
   return (
-    <div className="border border-black/10 bg-white">
-      <div className="border-b border-black/10 p-4">
-        <h3 className="text-lg font-medium">November 2025</h3>
-      </div>
-      <div className="grid grid-cols-7 divide-x divide-y divide-black/10">
-        {/* Header days */}
-        {daysOfWeek.map((day) => (
-          <div key={day} className="bg-[#f7f7f7] px-4 py-3 text-center text-sm font-medium text-black/60">
-            {day}
-          </div>
-        ))}
-        {/* Calendar days */}
-        {days.map((day, index) => (
-          <div
-            key={index}
-            className="min-h-[100px] border-r border-black/10 p-2 text-sm"
-          >
-            {day && (
-              <>
-                <div className="font-medium text-black">{day}</div>
-                <div className="mt-1 space-y-1">
-                  {day === 1 && (
-                    <div className="rounded bg-[#43918B] px-2 py-1 text-xs text-white">
-                      Event
-                    </div>
-                  )}
-                  {day === 15 && (
-                    <div className="rounded bg-blue-500 px-2 py-1 text-xs text-white">
-                      Meeting
-                    </div>
-                  )}
-                  {day === 25 && (
-                    <div className="rounded bg-orange-500 px-2 py-1 text-xs text-white">
-                      Deadline
-                    </div>
-                  )}
-                </div>
-              </>
-            )}
-          </div>
-        ))}
+    <div className="border border-black/10 bg-white overflow-x-auto -mx-3 sm:-mx-4 md:mx-0">
+      <div className="min-w-[600px]">
+        <div className="border-b border-black/10 p-2.5 sm:p-3 md:p-4">
+          <h3 className="text-sm sm:text-base md:text-lg font-medium">November 2025</h3>
+        </div>
+        <div className="grid grid-cols-7 divide-x divide-y divide-black/10">
+          {/* Header days */}
+          {daysOfWeek.map((day) => (
+            <div key={day} className="bg-[#f7f7f7] px-0.5 sm:px-1 md:px-4 py-1.5 sm:py-2 md:py-3 text-center text-[9px] sm:text-[10px] md:text-sm font-medium text-black/60">
+              {day}
+            </div>
+          ))}
+          {/* Calendar days */}
+          {days.map((day, index) => (
+            <div
+              key={index}
+              className="min-h-[50px] sm:min-h-[60px] md:min-h-[100px] border-r border-black/10 p-0.5 sm:p-1 md:p-2 text-[10px] sm:text-xs md:text-sm"
+            >
+              {day && (
+                <>
+                  <div className="font-medium text-black">{day}</div>
+                  <div className="mt-0.5 sm:mt-0.5 md:mt-1 space-y-0.5 md:space-y-1">
+                    {day === 1 && (
+                      <div className="rounded bg-[#43918B] px-0.5 sm:px-1 md:px-2 py-0.5 sm:py-0.5 md:py-1 text-[8px] sm:text-[10px] md:text-xs text-white">
+                        Event
+                      </div>
+                    )}
+                    {day === 15 && (
+                      <div className="rounded bg-blue-500 px-0.5 sm:px-1 md:px-2 py-0.5 sm:py-0.5 md:py-1 text-[8px] sm:text-[10px] md:text-xs text-white">
+                        Meeting
+                      </div>
+                    )}
+                    {day === 25 && (
+                      <div className="rounded bg-orange-500 px-0.5 sm:px-1 md:px-2 py-0.5 sm:py-0.5 md:py-1 text-[8px] sm:text-[10px] md:text-xs text-white">
+                        Deadline
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

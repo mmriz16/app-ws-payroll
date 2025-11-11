@@ -76,8 +76,8 @@ const employees: EmployeeRow[] = [
 export default function AbsensiPegawaiPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
-            <section className="flex flex-1 flex-col gap-6 p-6">
-                <div className="flex items-center gap-2 text-sm text-black/60">
+            <section className="flex flex-1 flex-col gap-4 md:gap-6 p-3 md:p-6">
+                <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
                     <span>Project</span>
@@ -85,15 +85,25 @@ export default function AbsensiPegawaiPage() {
                     <span className="font-medium text-[#43918B]">Absensi Pegawai</span>
                 </div>
 
-                <div className="flex flex-col gap-4 border border-black/10 bg-white p-6">
-                    <div className="flex items-center justify-between gap-2">
-                        <h2 className="text-lg font-medium">Absensi Pegawai</h2>
-                        <div className="flex w-fit gap-4">
-                            <div className="flex flex-col w-[250px] gap-2">
-                                <input id="tanggal_mulai" name="tanggal_mulai" type="month" placeholder="e.g. Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                <div className="flex flex-col gap-3 md:gap-4 border border-black/10 bg-white p-3 md:p-6">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-2">
+                        <h2 className="text-base md:text-lg font-medium">Absensi Pegawai</h2>
+                        <div className="flex flex-col sm:flex-row w-full md:w-fit gap-3 md:gap-4">
+                            <div className="flex flex-col w-full sm:w-[200px] md:w-[250px] gap-2">
+                                <input 
+                                    id="tanggal_mulai" 
+                                    name="tanggal_mulai" 
+                                    type="month" 
+                                    placeholder="e.g. Jan 2026" 
+                                    className="w-full border border-black/10 bg-[#f7f7f7] px-3 md:px-4 py-2.5 md:py-4 text-xs md:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" 
+                                />
                             </div>
-                            <div className="flex flex-col w-[250px] gap-2">
-                                <select id="status" name="status" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60">
+                            <div className="flex flex-col w-full sm:w-[200px] md:w-[250px] gap-2">
+                                <select 
+                                    id="status" 
+                                    name="status" 
+                                    className="w-full border border-black/10 bg-[#f7f7f7] px-3 md:px-4 py-2.5 md:py-4 text-xs md:text-sm text-black focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60"
+                                >
                                     <option value="">Pilih NIP</option>
                                     <option value="00164">00164 - Miftakhul Rizky</option>
                                     <option value="00165">00165 - Ananda Putri</option>
@@ -102,7 +112,7 @@ export default function AbsensiPegawaiPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="border border-black/10">
+                    <div className="border border-black/10 overflow-hidden">
                         <EmployeeTable rows={employees} />
                     </div>
                 </div>
@@ -117,52 +127,54 @@ function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
 
     return (
         <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-black/10 text-left text-xs border-collapse">
-                <thead className="bg-white text-black text-sm">
-                    <tr>
-                        <th className="px-4 py-3 sticky left-0 bg-white border-r border-black/10">NIP</th>
-                        <th className="px-4 py-3 sticky left-[67.72px] min-w-[200px] bg-white border-r border-black/10">Nama</th>
-                        {dates.map((date) => (
-                            <th key={date} className="px-2 py-3 border-r border-black/10 text-center min-w-[40px] whitespace-nowrap">{date}</th>
-                        ))}
-                        <th className="px-4 py-3 border-r border-black/10">Workday</th>
-                        <th className="px-4 py-3 border-r border-black/10">Absen</th>
-                        <th className="px-4 py-3 border-r border-black/10">Work</th>
-                        <th className="px-4 py-3 border-r border-black/10">Sisa</th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-black/10 bg-white">
-                    {rows.map((row) => (
-                        <tr key={row.id}>
-                            <td className="px-4 py-3 sticky left-0 bg-white border-r border-black/10">{row.nip}</td>
-                            <td className="px-4 py-3 sticky left-[67.72px] min-w-[200px] bg-white border-r border-black/10">{row.nama}</td>
-                            {dates.map((date) => {
-                                const value = row.tanggal[date] || "";
-                                const isLibur = value === "L";
-                                const isAlpha = value === "A";
-                                return (
-                                    <td
-                                        key={date}
-                                        className={`px-2 py-3 border-r border-black/10 text-center min-w-[40px] whitespace-nowrap ${
-                                            isLibur 
-                                                ? "bg-red-600 text-white font-semibold" 
-                                                : isAlpha 
-                                                ? "bg-orange-100 text-orange-600" 
-                                                : ""
-                                        }`}
-                                    >
-                                        {value || "-"}
-                                    </td>
-                                );
-                            })}
-                            <td className="px-4 py-3 border-r border-black/10">{row.workday}</td>
-                            <td className="px-4 py-3 border-r border-black/10">{row.absen}</td>
-                            <td className="px-4 py-3 border-r border-black/10">{row.work}</td>
-                            <td className="px-4 py-3 border-r border-black/10">{row.sisa_cuti}</td>
+            <div className="min-w-[1000px]">
+                <table className="min-w-full divide-y divide-black/10 text-left text-xs border-collapse">
+                    <thead className="bg-white text-black text-sm">
+                        <tr>
+                            <th className="px-2 md:px-4 py-2 md:py-3 sticky left-0 bg-white border-r border-black/10 z-10">NIP</th>
+                            <th className="px-2 md:px-4 py-2 md:py-3 sticky left-[60px] md:left-[67.72px] min-w-[120px] md:min-w-[200px] bg-white border-r border-black/10 z-10">Nama</th>
+                            {dates.map((date) => (
+                                <th key={date} className="px-1 md:px-2 py-2 md:py-3 border-r border-black/10 text-center min-w-[32px] md:min-w-[40px] whitespace-nowrap text-[10px] md:text-xs">{date}</th>
+                            ))}
+                            <th className="px-2 md:px-4 py-2 md:py-3 border-r border-black/10 whitespace-nowrap">Workday</th>
+                            <th className="px-2 md:px-4 py-2 md:py-3 border-r border-black/10 whitespace-nowrap">Absen</th>
+                            <th className="px-2 md:px-4 py-2 md:py-3 border-r border-black/10 whitespace-nowrap">Work</th>
+                            <th className="px-2 md:px-4 py-2 md:py-3 border-r border-black/10 whitespace-nowrap">Sisa</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="divide-y divide-black/10 bg-white">
+                        {rows.map((row) => (
+                            <tr key={row.id}>
+                                <td className="px-2 md:px-4 py-2 md:py-3 sticky left-0 bg-white border-r border-black/10 z-10 font-medium">{row.nip}</td>
+                                <td className="px-2 md:px-4 py-2 md:py-3 sticky left-[60px] md:left-[67.72px] min-w-[120px] md:min-w-[200px] bg-white border-r border-black/10 z-10">{row.nama}</td>
+                                {dates.map((date) => {
+                                    const value = row.tanggal[date] || "";
+                                    const isLibur = value === "L";
+                                    const isAlpha = value === "A";
+                                    return (
+                                        <td
+                                            key={date}
+                                            className={`px-1 md:px-2 py-2 md:py-3 border-r border-black/10 text-center min-w-[32px] md:min-w-[40px] whitespace-nowrap text-[10px] md:text-xs ${
+                                                isLibur 
+                                                    ? "bg-red-600 text-white font-semibold" 
+                                                    : isAlpha 
+                                                    ? "bg-orange-100 text-orange-600 font-medium" 
+                                                    : ""
+                                            }`}
+                                        >
+                                            {value || "-"}
+                                        </td>
+                                    );
+                                })}
+                                <td className="px-2 md:px-4 py-2 md:py-3 border-r border-black/10">{row.workday}</td>
+                                <td className="px-2 md:px-4 py-2 md:py-3 border-r border-black/10">{row.absen}</td>
+                                <td className="px-2 md:px-4 py-2 md:py-3 border-r border-black/10">{row.work}</td>
+                                <td className="px-2 md:px-4 py-2 md:py-3 border-r border-black/10">{row.sisa_cuti}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

@@ -36,29 +36,31 @@ export default function LoginPage() {
         </div>
       </div>
 
-      <div className="flex w-full flex-col justify-between px-6 py-8 sm:px-10 lg:w-[500px] lg:px-8 lg:py-8 xl:px-10">
-        <header className="flex items-center gap-4">
-          <div className="relative h-16 w-16">
+      <div className="flex w-full flex-col justify-between px-4 py-6 sm:px-6 sm:py-8 lg:w-[500px] lg:px-8 lg:py-8 xl:px-10">
+        <header className="flex items-center gap-3 sm:gap-4">
+          <div className="relative h-12 w-12 sm:h-16 sm:w-16">
             <Image
               src={logoSrc}
               alt="GenHR logo"
               fill
-              sizes="64px"
+              sizes="(max-width: 640px) 48px, 64px"
               className="object-contain"
               priority
             />
           </div>
-          <span className="text-2xl font-bold text-black">GenHR</span>
+          <span className="text-xl font-bold text-black sm:text-2xl">GenHR</span>
         </header>
 
-        <main className="mt-12 flex flex-col gap-8">
+        <main className="mt-8 flex flex-col gap-6 sm:mt-12 sm:gap-8">
           <div>
-            <h1 className="text-lg text-black">Sign into your pages account</h1>
+            <h1 className="text-base font-medium text-black sm:text-lg sm:font-normal">
+              Sign into your pages account
+            </h1>
           </div>
 
-          <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+          <form className="flex flex-col gap-5 sm:gap-6" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
-              <label className="text-base text-black" htmlFor="username">
+              <label className="text-sm font-medium text-black sm:text-base sm:font-normal" htmlFor="username">
                 Username
               </label>
               <input
@@ -66,12 +68,13 @@ export default function LoginPage() {
                 name="username"
                 type="text"
                 placeholder="e.g. steve.jobs"
-                className="w-full rounded-md border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60"
+                className="w-full rounded-md border border-black/10 bg-[#f7f7f7] px-4 py-3.5 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60 sm:py-4"
+                autoComplete="username"
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-base text-black" htmlFor="password">
+              <label className="text-sm font-medium text-black sm:text-base sm:font-normal" htmlFor="password">
                 Password
               </label>
               <div className="relative w-full">
@@ -80,12 +83,13 @@ export default function LoginPage() {
                   name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
-                  className="w-full rounded-md border border-black/10 bg-[#f7f7f7] px-4 py-4 pr-12 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60"
+                  className="w-full rounded-md border border-black/10 bg-[#f7f7f7] px-4 py-3.5 pr-12 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60 sm:py-4"
+                  autoComplete="current-password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((prev) => !prev)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-black/50 transition hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#43918B]/60"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-black/50 transition hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#43918B]/60 sm:right-4"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   aria-pressed={showPassword}
                 >
@@ -96,16 +100,16 @@ export default function LoginPage() {
                   )}
                 </button>
               </div>
-              <div className="flex items-center justify-between text-sm text-black">
+              <div className="flex flex-col gap-2 text-xs text-black sm:flex-row sm:items-center sm:justify-between sm:text-sm">
                 <label className="flex items-center gap-2 text-black">
                   <input
                     type="checkbox"
                     name="remember"
-                    className="size-4 accent-[#43918B]"
+                    className="size-3.5 accent-[#43918B] sm:size-4"
                   />
                   Remember me
                 </label>
-                <Link href="#" className="text-sm text-[#43918B] hover:underline">
+                <Link href="#" className="text-[#43918B] hover:underline sm:text-sm">
                   Forget Password?
                 </Link>
               </div>
@@ -113,16 +117,16 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full rounded-md border border-black/10 bg-[#43918B] px-4 py-4 text-base font-semibold text-white transition hover:bg-[#4aa098]"
+              className="w-full rounded-md border border-black/10 bg-[#43918B] px-4 py-3.5 text-sm font-semibold text-white transition active:bg-[#4aa098] sm:py-4 sm:text-base hover:bg-[#4aa098]"
             >
               Login
             </button>
           </form>
         </main>
 
-        <footer className="mt-10 flex flex-col gap-2 text-black">
-          <span className="text-3xl font-bold">GenHR</span>
-          <p className="text-base text-black">
+        <footer className="mt-8 flex flex-col gap-1.5 text-black sm:mt-10 sm:gap-2">
+          <span className="text-2xl font-bold sm:text-3xl">GenHR</span>
+          <p className="text-xs leading-relaxed text-black sm:text-base">
             Please Contact your HR Departement for User Credentials
           </p>
         </footer>
