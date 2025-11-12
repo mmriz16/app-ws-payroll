@@ -49,8 +49,8 @@ const employees: EmployeeRow[] = [
 export default function LaporanTerlambatTidakAbsenPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
-            <section className="flex flex-1 flex-col gap-4 p-4 md:gap-6 md:p-6">
-                <div className="flex flex-wrap items-center gap-2 text-sm text-black/60">
+            <section className="flex flex-1 flex-col gap-4 md:gap-6 p-3 md:p-6">
+                <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
                     <span>Self Service</span>
@@ -58,12 +58,12 @@ export default function LaporanTerlambatTidakAbsenPage() {
                     <span className="font-medium text-[#43918B]">Laporan Terlambat & Tidak Absen</span>
                 </div>
 
-                <div className="flex flex-col gap-4 border border-black/10 bg-white p-4 md:p-6">
+                <div className="flex flex-col gap-4 border border-black/10 bg-white p-3 md:p-6">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                        <h2 className="text-lg font-medium">Laporan Terlambat & Tidak Absen</h2>
-                        <div className="flex w-full md:w-fit flex-col sm:flex-row gap-4">
+                        <h2 className="text-base md:text-lg font-medium">Laporan Terlambat & Tidak Absen</h2>
+                        <div className="flex w-full md:w-fit flex-row sm:flex-row gap-4">
                             <div className="flex flex-col w-full md:w-[250px] gap-2">
-                                <input id="tanggal_mulai" name="tanggal_mulai" type="month" placeholder="e.g. Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="tanggal_mulai" name="tanggal_mulai" type="month" placeholder="e.g. Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <Link
                                 href="/self-service/laporan-terlambat-tidak-absen/create"
@@ -84,8 +84,8 @@ export default function LaporanTerlambatTidakAbsenPage() {
 
 function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
     return (
-        <table className="min-w-[600px] divide-y divide-black/10 text-left text-xs">
-            <thead className="bg-white text-black text-sm">
+        <table className="min-w-full divide-y divide-black/10 text-left text-xs">
+            <thead className="bg-white text-black text-xs">
                 <tr>
                     <th className="px-4 py-3 bg-white border-r border-black/10">Status</th>
                     <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>

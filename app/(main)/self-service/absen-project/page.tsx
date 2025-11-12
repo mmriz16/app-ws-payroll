@@ -33,8 +33,8 @@ const employees: EmployeeRow[] = [
 export default function AbsenProjectPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
-            <section className="flex flex-1 flex-col gap-6 p-6">
-                <div className="flex items-center gap-2 text-sm text-black/60">
+            <section className="flex flex-1 flex-col gap-4 md:gap-6 p-3 md:p-6">
+                <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
                     <span>Self Service</span>
@@ -42,9 +42,9 @@ export default function AbsenProjectPage() {
                     <span className="font-medium text-[#43918B]">Absen Project</span>
                 </div>
 
-                <div className="flex flex-col gap-4 border border-black/10 bg-white p-6">
+                <div className="flex flex-col gap-4 border border-black/10 bg-white p-3 md:p-6">
                     <div className="flex items-center justify-between gap-2">
-                        <h2 className="text-lg font-medium">Absen Project</h2>
+                        <h2 className="text-base md:text-lg font-medium">Absen Project</h2>
                     </div>
                     <div className="overflow-hidden  border border-black/10">
                         <EmployeeTable rows={employees} />
@@ -65,7 +65,7 @@ export default function AbsenProjectPage() {
 function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
     return (
         <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-            <thead className="bg-white text-black text-sm">
+            <thead className="bg-white text-black text-xs">
                 <tr>
                     <th className="px-4 py-3 w-12 bg-white border-r border-black/10">
                         <input type="checkbox" className="w-4 h-4 text-[#43918B] bg-[#f7f7f7] border-black/10 focus:ring-[#43918B] focus:ring-2" />

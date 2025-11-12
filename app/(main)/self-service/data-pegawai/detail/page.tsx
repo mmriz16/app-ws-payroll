@@ -31,49 +31,49 @@ export default function DataPegawaiPage() {
                         <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">NIP</label>
-                                <input id="nip" name="nip" type="number" placeholder="e.g. 00164" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="nip" name="nip" type="number" placeholder="e.g. 00164" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">ID Absensi</label>
-                                <input id="id_absensi" name="id_absensi" type="number" placeholder="e.g. 75" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="id_absensi" name="id_absensi" type="number" placeholder="e.g. 75" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                         </div>
 
                         <div className="flex flex-col w-full gap-2">
                             <label className="text-sm text-black/60" htmlFor="username">Nama Lengkap</label>
-                            <input id="nama_lengkap" name="nama_lengkap" type="text" placeholder="e.g. Steve Jobs" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                            <input id="nama_lengkap" name="nama_lengkap" type="text" placeholder="e.g. Steve Jobs" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
 
                         <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">No KTP/ID/KITAS</label>
-                                <input id="no_ktp_id_kitas" name="no_ktp_id_kitas" type="number" placeholder="e.g. 08112233445566778899" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="no_ktp_id_kitas" name="no_ktp_id_kitas" type="number" placeholder="e.g. 08112233445566778899" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Berlaku Sampai</label>
-                                <input id="berlaku_sampai" name="berlaku_sampai" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="berlaku_sampai" name="berlaku_sampai" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                         </div>
 
                         <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">No Paspor</label>
-                                <input id="no_paspor" name="no_paspor" type="number" placeholder="e.g. 08112233445566778899" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="no_paspor" name="no_paspor" type="number" placeholder="e.g. 08112233445566778899" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Berlaku Sampai</label>
-                                <input id="berlaku_sampai_paspor" name="berlaku_sampai_paspor" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="berlaku_sampai_paspor" name="berlaku_sampai_paspor" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                         </div>
 
                         <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Tempat Lahir</label>
-                                <input id="tempat_lahir" name="tempat_lahir" type="text" placeholder="e.g. Jakarta" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="tempat_lahir" name="tempat_lahir" type="text" placeholder="e.g. Jakarta" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Tanggal Lahir</label>
-                                <input id="tanggal_lahir" name="tanggal_lahir" type="date" placeholder="e.g. 01 Jan 1990" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="tanggal_lahir" name="tanggal_lahir" type="date" placeholder="e.g. 01 Jan 1990" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                         </div>
 
@@ -108,13 +108,13 @@ export default function DataPegawaiPage() {
 
                         <div className="flex flex-col w-full gap-2">
                             <label className="text-sm text-black/60" htmlFor="username">Alamat</label>
-                            <textarea id="alamat" name="alamat" rows={4} placeholder="e.g. Jl. Raya Jakarta No. 123" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                            <textarea id="alamat" name="alamat" rows={4} placeholder="e.g. Jl. Raya Jakarta No. 123" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
 
                         <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Kode Pos</label>
-                                <input id="kode_pos" name="kode_pos" type="number" placeholder="e.g. 12345" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="kode_pos" name="kode_pos" type="number" placeholder="e.g. 12345" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Golongan Darah</label>
@@ -140,17 +140,17 @@ export default function DataPegawaiPage() {
                         <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">No Telepon</label>
-                                <input id="no_telepon" name="no_telepon" type="number" placeholder="e.g. 08123456789" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="no_telepon" name="no_telepon" type="number" placeholder="e.g. 08123456789" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">No HP</label>
-                                <input id="no_hp" name="no_hp" type="number" placeholder="e.g. 08123456789" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="no_hp" name="no_hp" type="number" placeholder="e.g. 08123456789" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                         </div>
 
                         <div className="flex flex-col w-full gap-2">
                             <label className="text-sm text-black/60" htmlFor="username">Email</label>
-                            <input id="email" name="email" type="email" placeholder="e.g. example@genhr.co.id" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                            <input id="email" name="email" type="email" placeholder="e.g. example@genhr.co.id" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
                     </div>
 
@@ -160,26 +160,26 @@ export default function DataPegawaiPage() {
 
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Jabatan</label>
-                                <input id="jabatan" name="jabatan" type="text" placeholder="e.g. Manager" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="jabatan" name="jabatan" type="text" placeholder="e.g. Manager" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
 
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Organisasi</label>
-                                <input id="organisasi" name="organisasi" type="text" placeholder="e.g. Manager" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="organisasi" name="organisasi" type="text" placeholder="e.g. Manager" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">Golongan</label>
-                                    <input id="golongan" name="golongan" type="text" placeholder="e.g. Golongan 1" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                    <input id="golongan" name="golongan" type="text" placeholder="e.g. Golongan 1" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">Cuti Tahunan</label>
-                                    <input id="cuti_tahunan" name="cuti_tahunan" type="number" placeholder="e.g. 12 hari" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                    <input id="cuti_tahunan" name="cuti_tahunan" type="number" placeholder="e.g. 12 hari" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">Tambahan Cuti Pertahun</label>
-                                    <input id="tambahan_cuti_pertahun" name="tambahan_cuti_pertahun" type="number" placeholder="e.g. 1 hari" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                    <input id="tambahan_cuti_pertahun" name="tambahan_cuti_pertahun" type="number" placeholder="e.g. 1 hari" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
                             </div>
 
@@ -212,44 +212,44 @@ export default function DataPegawaiPage() {
 
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Kantor</label>
-                                <input id="kantor" name="kantor" type="text" placeholder="e.g. PT Datacaraka Solusindo" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="kantor" name="kantor" type="text" placeholder="e.g. PT Datacaraka Solusindo" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
 
                             <div className="flex w-full flex-col md:flex-row gap-4">
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">Tanggal Masuk</label>
-                                    <input id="tanggal_masuk" name="tanggal_masuk" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                    <input id="tanggal_masuk" name="tanggal_masuk" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">Status Pegawai</label>
-                                    <input id="status_pegawai" name="status_pegawai" type="text" placeholder="e.g. Karyawan" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                    <input id="status_pegawai" name="status_pegawai" type="text" placeholder="e.g. Karyawan" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
                             </div>
 
                             <div className="flex w-full flex-col md:flex-row gap-4">
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">No NPWP</label>
-                                    <input id="no_npwp" name="no_npwp" type="text" placeholder="e.g. 00164" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                    <input id="no_npwp" name="no_npwp" type="text" placeholder="e.g. 00164" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">Status PTKP</label>
-                                    <input id="status_ptkp" name="status_ptkp" type="text" placeholder="e.g. K/1" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                    <input id="status_ptkp" name="status_ptkp" type="text" placeholder="e.g. K/1" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
                             </div>
 
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Nama Ibu Kandung</label>
-                                <input id="nama_ibu_kandung" name="nama_ibu_kandung" type="text" placeholder="e.g. PT Datacaraka Solusindo" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="nama_ibu_kandung" name="nama_ibu_kandung" type="text" placeholder="e.g. PT Datacaraka Solusindo" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
 
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Kumulatif Penghasilan dari Pemberi Kerja Sebelumnya</label>
-                                <input id="kumulatif_penghasilan_sebelumnya" name="kumulatif_penghasilan_sebelumnya" type="number" placeholder="e.g. 1000000" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="kumulatif_penghasilan_sebelumnya" name="kumulatif_penghasilan_sebelumnya" type="number" placeholder="e.g. 1000000" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
 
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Perkiraan Pensiun</label>
-                                <input id="perkiraan_pensiun" name="perkiraan_pensiun" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="perkiraan_pensiun" name="perkiraan_pensiun" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                         </div>
                     </div>

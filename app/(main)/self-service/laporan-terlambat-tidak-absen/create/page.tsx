@@ -49,17 +49,17 @@ export default function PengajuanCutiIjinPage() {
                     <div className="flex w-full flex-col md:flex-row gap-4">
                         <div className="flex flex-col w-full gap-2">
                             <label className="text-sm text-black/60" htmlFor="username">Dari Tanggal</label>
-                            <input id="tanggal_mulai" name="tanggal_mulai" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                            <input id="tanggal_mulai" name="tanggal_mulai" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
                         <div className="flex flex-col w-full gap-2">
                             <label className="text-sm text-black/60" htmlFor="username">Sampai Tanggal</label>
-                            <input id="tanggal_selesai" name="tanggal_selesai" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                            <input id="tanggal_selesai" name="tanggal_selesai" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
                     </div>
 
                     <div className="flex flex-col w-full gap-2">
                         <label className="text-sm text-black/60" htmlFor="username">Keterangan</label>
-                        <textarea id="keterangan" name="keterangan" rows={4} placeholder="e.g. Ijin Sakit" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                        <textarea id="keterangan" name="keterangan" rows={4} placeholder="e.g. Ijin Sakit" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                     </div>
 
                     <Link

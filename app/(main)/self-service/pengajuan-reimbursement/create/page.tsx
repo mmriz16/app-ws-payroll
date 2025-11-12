@@ -73,18 +73,18 @@ export default function PengajuanReimbursementCreatePage() {
                         <div className="flex w-full gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Periode</label>
-                                <input id="tanggal_mulai" name="tanggal_mulai" type="month" placeholder="e.g. Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="tanggal_mulai" name="tanggal_mulai" type="month" placeholder="e.g. Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">NIP</label>
-                                <input id="nip" name="nip" type="number" placeholder="e.g. 00164" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <input id="nip" name="nip" type="number" placeholder="e.g. 00164" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                         </div>
 
 
                         <div className="flex flex-col w-full gap-2">
                             <label className="text-sm text-black/60" htmlFor="username">Catatan</label>
-                            <textarea id="catatan" name="catatan" rows={4} placeholder="e.g. Catatan" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                            <textarea id="catatan" name="catatan" rows={4} placeholder="e.g. Catatan" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ export default function PengajuanReimbursementCreatePage() {
                     <ReimbursementTable rows={reimbursements} />
                         <div className="flex flex-col w-full gap-2">
                             <label className="text-sm text-black/60" htmlFor="username">Total</label>
-                            <input id="total" name="total" type="number" placeholder="e.g. 1.000.000" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                            <input id="total" name="total" type="number" placeholder="e.g. 1.000.000" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
 
                         <Link

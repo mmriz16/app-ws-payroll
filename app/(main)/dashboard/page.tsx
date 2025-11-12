@@ -540,7 +540,7 @@ type ScheduleRow = {
 
 function ScheduleTable({ rows }: { rows: ScheduleRow[] }) {
   return (
-    <div className="mt-3 sm:mt-4 overflow-x-auto border border-black/10 -mx-3 sm:-mx-4 md:mx-0">
+    <div className="mt-3 sm:mt-4 overflow-x-auto border border-black/10 mx-0">
       <div className="min-w-[600px]">
         <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
           <thead className="bg-white text-black text-xs sm:text-sm">
@@ -696,7 +696,7 @@ function TeamCalendar() {
   }
 
   return (
-    <div className="border border-black/10 bg-white overflow-x-auto -mx-3 sm:-mx-4 md:mx-0">
+    <div className="border border-black/10 bg-white overflow-x-auto mx-0">
       <div className="min-w-[600px]">
         <div className="border-b border-black/10 p-2.5 sm:p-3 md:p-4">
           <h3 className="text-sm sm:text-base md:text-lg font-medium">November 2025</h3>

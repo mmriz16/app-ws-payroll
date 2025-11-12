@@ -66,8 +66,8 @@ const pegawaiList = [
 export default function ApprovalCutiIjinPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
-            <section className="flex flex-1 flex-col gap-4 p-4 md:gap-6 md:p-6">
-                <div className="flex items-center gap-2 flex-wrap text-sm text-black/60">
+            <section className="flex flex-1 flex-col gap-4 md:gap-6 p-3 md:p-6">
+                <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
                     <span>Self Service</span>
@@ -75,20 +75,20 @@ export default function ApprovalCutiIjinPage() {
                     <span className="font-medium text-[#43918B]">Approval Cuti & Ijin</span>
                 </div>
 
-                <div className="flex flex-col gap-4 border border-black/10 bg-white p-4 md:p-6">
+                <div className="flex flex-col gap-4 border border-black/10 bg-white p-3 md:p-6">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                        <h2 className="text-lg font-medium">Approval Cuti & Ijin</h2>
+                        <h2 className="text-base md:text-lg font-medium">Approval Cuti & Ijin</h2>
                         <div className="flex w-full md:w-fit flex-col md:flex-row gap-3 md:gap-4">
                             <div className="flex flex-row w-full md:w-[500px] gap-2">
-                                <div className="flex flex-col w-full md:w-[250px] gap-2">
-                                    <input id="Tanggal_Awal" name="Tanggal_Awal" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <div className="flex flex-col w-full sm:w-[200px] md:w-[250px] gap-2">
+                                    <input id="Tanggal_Awal" name="Tanggal_Awal" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
-                                <div className="flex flex-col w-full md:w-[250px] gap-2">
-                                    <input id="Tanggal_Akhir" name="Tanggal_Akhir" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                <div className="flex flex-col w-full sm:w-[200px] md:w-[250px] gap-2">
+                                    <input id="Tanggal_Akhir" name="Tanggal_Akhir" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
                             </div>
-                            <div className="flex flex-col w-full md:w-[250px] gap-2">
-                                <select id="pegawai" name="pegawai" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60">
+                            <div className="flex flex-col w-full sm:w-[200px] md:w-[250px] gap-2">
+                                <select id="pegawai" name="pegawai" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60">
                                     <option value="">Pilih Pegawai</option>
                                     {pegawaiList.map((pegawai) => (
                                         <option key={pegawai.nip} value={pegawai.nip}>
@@ -108,34 +108,50 @@ export default function ApprovalCutiIjinPage() {
     );
 }
 
+function statusClass(status: string) {
+    const base = "inline-flex items-center justify-center rounded-full px-2 py-1 text-xs font-medium";
+    switch (status) {
+        case "Approved":
+            return base + " bg-green-100 text-green-700";
+        case "Pending":
+            return base + " bg-yellow-100 text-yellow-700";
+        case "Rejected":
+            return base + " bg-red-100 text-red-700";
+        default:
+            return base + " bg-gray-100 text-gray-700";
+    }
+}
+
 function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
     return (
         <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-            <thead className="bg-white text-black text-sm">
+            <thead className="bg-white text-black text-xs">
                 <tr>
                     <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
                     <th className="px-4 py-3 bg-white border-r border-black/10">Nama Lengkap</th>
                     <th className="px-4 py-3 bg-white border-r border-black/10">Tipe</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Catatan Pengajuan</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">Catatan Pengajuan</th>
                     <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Mulai</th>
                     <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Selesai</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Hari Kerja</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Entrier</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">Hari Kerja</th>
+                    <th className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">Entrier</th>
                     <th className="px-4 py-3">Status Pengajuan</th>
                 </tr>
             </thead>
             <tbody className="divide-y divide-black/10 bg-white">
                 {rows.map((row) => (
                     <tr key={row.id}>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.nip}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.nama_lengkap}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.nip}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 truncate">{row.nama_lengkap}</td>
                         <td className="px-4 py-3 bg-white border-r border-black/10">{row.tipe}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.catatan_pengajuan}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_mulai}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_selesai}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.hari_kerja}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.entrier}</td>
-                        <td className="px-4 py-3">{row.status_pengajuan}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell truncate">{row.catatan_pengajuan}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.tanggal_mulai}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.tanggal_selesai}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">{row.hari_kerja}</td>
+                        <td className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">{row.entrier}</td>
+                        <td className="px-4 py-3">
+                            <span className={statusClass(row.status_pengajuan)}>{row.status_pengajuan}</span>
+                        </td>
                     </tr>
                 ))}
             </tbody>

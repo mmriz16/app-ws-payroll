@@ -122,7 +122,7 @@ export default function TopBar({ onMenuToggle }: TopBarProps) {
             Miftakhul Rizky [Dept. Teknisi] - Pegawai
           </span>
           <span className="md:hidden text-[12px] font-medium text-black leading-tight">
-            Miftakhul Rizky [Dept. Teknisi] - Pegawai
+            Miftakhul Rizky - Pegawai
           </span>
         </div>
 

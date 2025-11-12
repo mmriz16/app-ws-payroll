@@ -77,13 +77,13 @@ function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
     return (
         <div className="min-w-[800px]">
             <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-                <thead className="bg-white text-black text-sm">
+                <thead className="bg-white text-black text-xs">
                     <tr>
-                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10">NIP</th>
-                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10">Nama</th>
-                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">Tanggal Lahir</th>
-                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">Tanggal Masuk</th>
-                        <th className="px-2 md:px-4 py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">No HP</th>
+                        <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">NIP</th>
+                        <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Nama</th>
+                        <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">Tanggal Lahir</th>
+                        <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">Tanggal Masuk</th>
+                        <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">No HP</th>
                         <th className="px-2 md:px-4 py-2 md:py-3 whitespace-nowrap">Email</th>
                     </tr>
                 </thead>
