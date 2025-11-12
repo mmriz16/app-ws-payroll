@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 export default function DataPegawaiPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
-            <section className="flex flex-1 flex-col gap-6 p-6">
+            <section className="flex flex-1 flex-col gap-4 p-4 md:gap-6 md:p-6">
                 <Link href="/self-service/data-pegawai" className="flex items-center justify-center w-fit text-sm font-semibold text-black">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Kembali
                 </Link>
-                <div className="flex items-center gap-2 text-sm text-black/60">
+                <div className="flex items-center gap-2 flex-wrap text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
                     <span>Self Service</span>
@@ -25,10 +25,10 @@ export default function DataPegawaiPage() {
                     <span className="font-medium text-[#43918B]">Detail Pegawai</span>
                 </div>
 
-                <div className="flex w-full gap-4">
-                    <div className="flex flex-col w-full gap-4 border border-black/10 bg-white p-6">
+                <div className="flex w-full flex-col gap-4 lg:flex-row">
+                    <div className="flex flex-col w-full gap-4 border border-black/10 bg-white p-4 md:p-6">
                         <h2 className="text-lg font-medium">Data Pribadi</h2>
-                        <div className="flex w-full gap-4">
+                        <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">NIP</label>
                                 <input id="nip" name="nip" type="number" placeholder="e.g. 00164" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
@@ -44,7 +44,7 @@ export default function DataPegawaiPage() {
                             <input id="nama_lengkap" name="nama_lengkap" type="text" placeholder="e.g. Steve Jobs" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
 
-                        <div className="flex w-full gap-4">
+                        <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">No KTP/ID/KITAS</label>
                                 <input id="no_ktp_id_kitas" name="no_ktp_id_kitas" type="number" placeholder="e.g. 08112233445566778899" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
@@ -55,7 +55,7 @@ export default function DataPegawaiPage() {
                             </div>
                         </div>
 
-                        <div className="flex w-full gap-4">
+                        <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">No Paspor</label>
                                 <input id="no_paspor" name="no_paspor" type="number" placeholder="e.g. 08112233445566778899" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
@@ -66,7 +66,7 @@ export default function DataPegawaiPage() {
                             </div>
                         </div>
 
-                        <div className="flex w-full gap-4">
+                        <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Tempat Lahir</label>
                                 <input id="tempat_lahir" name="tempat_lahir" type="text" placeholder="e.g. Jakarta" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
@@ -77,7 +77,7 @@ export default function DataPegawaiPage() {
                             </div>
                         </div>
 
-                        <div className="flex w-full gap-4">
+                        <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60">Jenis Kelamin</label>
                                 <div className="flex gap-6">
@@ -111,7 +111,7 @@ export default function DataPegawaiPage() {
                             <textarea id="alamat" name="alamat" rows={4} placeholder="e.g. Jl. Raya Jakarta No. 123" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                         </div>
 
-                        <div className="flex w-full gap-4">
+                        <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">Kode Pos</label>
                                 <input id="kode_pos" name="kode_pos" type="number" placeholder="e.g. 12345" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
@@ -137,7 +137,7 @@ export default function DataPegawaiPage() {
                             </select>
                         </div>
 
-                        <div className="flex w-full gap-4">
+                        <div className="flex w-full flex-col md:flex-row gap-4">
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60" htmlFor="username">No Telepon</label>
                                 <input id="no_telepon" name="no_telepon" type="number" placeholder="e.g. 08123456789" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
@@ -155,7 +155,7 @@ export default function DataPegawaiPage() {
                     </div>
 
                     <div className="flex flex-col w-full gap-4">
-                        <div className="flex flex-col w-full gap-4 border border-black/10 bg-white p-6">
+                        <div className="flex flex-col w-full gap-4 border border-black/10 bg-white p-4 md:p-6">
                             <h2 className="text-lg font-medium">Jabatan & Golongan</h2>
 
                             <div className="flex flex-col w-full gap-2">
@@ -168,7 +168,7 @@ export default function DataPegawaiPage() {
                                 <input id="organisasi" name="organisasi" type="text" placeholder="e.g. Manager" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
 
-                            <div className="flex w-full gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">Golongan</label>
                                     <input id="golongan" name="golongan" type="text" placeholder="e.g. Golongan 1" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
@@ -185,8 +185,8 @@ export default function DataPegawaiPage() {
 
                             <div className="flex flex-col w-full gap-2">
                                 <label className="text-sm text-black/60">SIM</label>
-                                <div className="w-full border border-black/10 overflow-hidden">
-                                    <table className="w-full">
+                                <div className="w-full border border-black/10 overflow-x-auto">
+                                    <table className="w-full min-w-[600px]">
                                         <thead className="bg-[#f7f7f7]">
                                             <tr>
                                                 <th className="px-4 py-3 bg-white border-r border-black/10 text-left text-sm font-medium text-black/60 border-b border-black/10">#</th>
@@ -207,7 +207,7 @@ export default function DataPegawaiPage() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col w-full gap-4 border border-black/10 bg-white p-6">
+                        <div className="flex flex-col w-full gap-4 border border-black/10 bg-white p-4 md:p-6">
                             <h2 className="text-lg font-medium">Data Perpajakan</h2>
 
                             <div className="flex flex-col w-full gap-2">
@@ -215,7 +215,7 @@ export default function DataPegawaiPage() {
                                 <input id="kantor" name="kantor" type="text" placeholder="e.g. PT Datacaraka Solusindo" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
 
-                            <div className="flex w-full gap-4">
+                            <div className="flex w-full flex-col md:flex-row gap-4">
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">Tanggal Masuk</label>
                                     <input id="tanggal_masuk" name="tanggal_masuk" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
@@ -226,7 +226,7 @@ export default function DataPegawaiPage() {
                                 </div>
                             </div>
 
-                            <div className="flex w-full gap-4">
+                            <div className="flex w-full flex-col md:flex-row gap-4">
                                 <div className="flex flex-col w-full gap-2">
                                     <label className="text-sm text-black/60" htmlFor="username">No NPWP</label>
                                     <input id="no_npwp" name="no_npwp" type="text" placeholder="e.g. 00164" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />

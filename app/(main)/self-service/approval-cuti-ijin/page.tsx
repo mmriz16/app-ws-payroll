@@ -66,8 +66,8 @@ const pegawaiList = [
 export default function ApprovalCutiIjinPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
-            <section className="flex flex-1 flex-col gap-6 p-6">
-                <div className="flex items-center gap-2 text-sm text-black/60">
+            <section className="flex flex-1 flex-col gap-4 p-4 md:gap-6 md:p-6">
+                <div className="flex items-center gap-2 flex-wrap text-sm text-black/60">
                     <span>Home</span>
                     <span>/</span>
                     <span>Self Service</span>
@@ -75,17 +75,19 @@ export default function ApprovalCutiIjinPage() {
                     <span className="font-medium text-[#43918B]">Approval Cuti & Ijin</span>
                 </div>
 
-                <div className="flex flex-col gap-4 border border-black/10 bg-white p-6">
-                    <div className="flex items-center justify-between gap-2">
+                <div className="flex flex-col gap-4 border border-black/10 bg-white p-4 md:p-6">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <h2 className="text-lg font-medium">Approval Cuti & Ijin</h2>
-                        <div className="flex w-fit gap-4">
-                            <div className="flex flex-col w-[250px] gap-2">
-                                <input id="Tanggal_Awal" name="Tanggal_Awal" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                        <div className="flex w-full md:w-fit flex-col md:flex-row gap-3 md:gap-4">
+                            <div className="flex flex-row w-full md:w-[500px] gap-2">
+                                <div className="flex flex-col w-full md:w-[250px] gap-2">
+                                    <input id="Tanggal_Awal" name="Tanggal_Awal" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                </div>
+                                <div className="flex flex-col w-full md:w-[250px] gap-2">
+                                    <input id="Tanggal_Akhir" name="Tanggal_Akhir" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
+                                </div>
                             </div>
-                            <div className="flex flex-col w-[250px] gap-2">
-                                <input id="Tanggal_Akhir" name="Tanggal_Akhir" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
-                            </div>
-                            <div className="flex flex-col w-[250px] gap-2">
+                            <div className="flex flex-col w-full md:w-[250px] gap-2">
                                 <select id="pegawai" name="pegawai" className="w-full border border-black/10 bg-[#f7f7f7] px-4 py-4 text-sm text-black focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60">
                                     <option value="">Pilih Pegawai</option>
                                     {pegawaiList.map((pegawai) => (
@@ -97,7 +99,7 @@ export default function ApprovalCutiIjinPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="overflow-hidden  border border-black/10">
+                    <div className="overflow-x-auto border border-black/10">
                         <EmployeeTable rows={employees} />
                     </div>
                 </div>

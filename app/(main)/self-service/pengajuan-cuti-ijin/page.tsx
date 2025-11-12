@@ -81,7 +81,7 @@ export default function PengajuanCutiIjinPage() {
                             </div>
                             <Link
                                 href="/self-service/pengajuan-cuti-ijin/create"
-                                className="flex items-center justify-center w-full sm:w-fit border border-black/10 bg-[#43918B] px-4 py-2.5 sm:py-2 text-xs sm:text-sm font-semibold text-white transition active:bg-[#4aa098] hover:bg-[#4aa098]"
+                                className="flex items-center justify-center w-full sm:w-fit h-[40px] sm:h-[54px] border border-black/10 bg-[#43918B] px-4 py-2.5 sm:py-2 text-xs sm:text-sm font-semibold text-white transition active:bg-[#4aa098] hover:bg-[#4aa098]"
                             >
                                 Ajukan Cuti
                             </Link>
