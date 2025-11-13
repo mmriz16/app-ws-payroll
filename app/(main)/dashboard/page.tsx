@@ -435,7 +435,7 @@ export default function DashboardPage() {
         alert(`Mohon aktifkan izin lokasi di browser untuk melanjutkan ${action}.`);
         throw new Error("geolocation_denied");
       }
-    } catch {}
+    } catch { }
     return await new Promise<{ lat: string; lng: string }>((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
@@ -491,8 +491,23 @@ export default function DashboardPage() {
           isLate = parseTime(checkInStr) > threshold.getTime();
         }
         const timerBg = isLate ? "bg-yellow-400" : "bg-[#43918B]";
+        let lateDisplay = "00 : 00 : 00";
+        if (isLate && checkInStr) {
+          const threshold = new Date();
+          threshold.setHours(8, 0, 0, 0);
+          const ms = parseTime(checkInStr) - threshold.getTime();
+          lateDisplay = formatHMS(ms);
+        }
         return (
           <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
+            {isLate && (
+              <div className="flex items-start gap-2 sm:gap-2.5 md:gap-3 border border-yellow-100 bg-linear-to-r from-[#ffd00009] to-[#ffee0009] p-3 sm:p-4 md:p-6 text-yellow-600">
+                <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0 mt-0.5" />
+                <p className="text-[10px] sm:text-xs md:text-sm font-light leading-4 sm:leading-5 md:leading-6">
+                  Anda terlambat {lateDisplay} dari jam 08:00, harap buat laporan keterlambatan.
+                </p>
+              </div>
+            )}
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between md:justify-between gap-2.5 sm:gap-3 md:gap-4">
               <div className="flex flex-col md:flex-row w-full md:w-lg items-center gap-2 sm:gap-2.5 md:gap-3">
                 <label className="flex w-full md:w-sm items-center h-[46px] gap-2 sm:gap-2.5 md:gap-3 border border-black/10 bg-[#f7f7f7] px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-[10px] sm:text-xs md:text-sm text-black/60">
@@ -694,10 +709,7 @@ export default function DashboardPage() {
         <div className="flex items-start gap-2 sm:gap-2.5 md:gap-3 border border-red-100 bg-linear-to-r from-[#ff000009] to-[#ff000009] p-3 sm:p-4 md:p-6 text-red-600">
           <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0 mt-0.5" />
           <p className="text-[10px] sm:text-xs md:text-sm font-light leading-4 sm:leading-5 md:leading-6">
-            Per 19 Maret 2025, untuk WFO absen menggunakan mesin finger print
-            masuk, Check In untuk absen masuk dan Check Out untuk absen pulang !!
-            || Pengisian RENCANA dan REALISASI dilakukan melalui Wipro dan
-            dipantau oleh atasan
+            Per 19 Maret 2025, untuk WFO absen menggunakan mesin finger print masuk, Check In untuk absen masuk dan Check Out untuk absen pulang !! || Pengisian RENCANA dan REALISASI dilakukan melalui Wipro dan dipantau oleh atasan
           </p>
         </div>
 
