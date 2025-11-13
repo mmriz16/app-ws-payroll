@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AlertTriangle, Search } from "lucide-react";
 
 const currentWeekSchedule = [
@@ -49,6 +49,15 @@ type AttendanceRow = {
   duration: string;
   source: string;
   approval: string;
+  device: string;
+  lat: string;
+  lng: string;
+  checkInDevice?: string;
+  checkOutDevice?: string;
+  checkInLat?: string;
+  checkInLng?: string;
+  checkOutLat?: string;
+  checkOutLng?: string;
 };
 
 type CutiRow = {
@@ -82,6 +91,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "09 Jam 15 Menit",
     source: "FP",
     approval: "Approved",
+    device: "Laptop",
+    lat: "-6.159417606819653",
+    lng: "106.81729741682747",
   },
   {
     id: "02",
@@ -92,6 +104,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "08 Jam 56 Menit",
     source: "FP",
     approval: "Approved",
+    device: "Laptop",
+    lat: "-7.2749",
+    lng: "112.7190",
   },
   {
     id: "03",
@@ -102,6 +117,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "09 Jam 30 Menit",
     source: "Mobile",
     approval: "Approved",
+    device: "Smartphone",
+    lat: "-7.3161",
+    lng: "112.7130",
   },
   {
     id: "04",
@@ -112,6 +130,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "08 Jam 38 Menit",
     source: "Manual",
     approval: "Approved",
+    device: "Laptop",
+    lat: "-7.3490",
+    lng: "112.7687",
   },
   {
     id: "05",
@@ -122,6 +143,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "09 Jam 01 Menit",
     source: "FP",
     approval: "Approved",
+    device: "Laptop",
+    lat: "-7.2891",
+    lng: "112.7402",
   },
   {
     id: "06",
@@ -132,6 +156,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "09 Jam 11 Menit",
     source: "FP",
     approval: "Approved",
+    device: "Laptop",
+    lat: "-7.3020",
+    lng: "112.7563",
   },
   {
     id: "07",
@@ -142,6 +169,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "08 Jam",
     source: "Manual",
     approval: "Approved",
+    device: "Laptop",
+    lat: "-7.4012",
+    lng: "112.6124",
   },
   {
     id: "08",
@@ -152,6 +182,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "-",
     source: "Self Service",
     approval: "Approved",
+    device: "Laptop",
+    lat: "-7.2500",
+    lng: "112.7683",
   },
   {
     id: "09",
@@ -162,6 +195,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "09 Jam 05 Menit",
     source: "FP",
     approval: "Approved",
+    device: "Laptop",
+    lat: "-7.2756",
+    lng: "112.6400",
   },
   {
     id: "10",
@@ -172,6 +208,9 @@ const attendanceRows: AttendanceRow[] = [
     duration: "-",
     source: "Self Service",
     approval: "Pending",
+    device: "Laptop",
+    lat: "-7.3100",
+    lng: "112.6500",
   },
 ];
 
@@ -365,38 +404,171 @@ const reimburseRows: ReimburseRow[] = [
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState("Absensi");
+  const [attendanceState, setAttendanceState] = useState<AttendanceRow[]>(attendanceRows);
+  const [workingTimer, setWorkingTimer] = useState("00 : 00 : 00");
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  const parseTime = (t: string) => {
+    const m = t.match(/(\d{2})\s:\s(\d{2})\s:\s(\d{2})/);
+    if (!m) return 0;
+    const d = new Date();
+    d.setHours(Number(m[1]));
+    d.setMinutes(Number(m[2]));
+    d.setSeconds(Number(m[3]));
+    return d.getTime();
+  };
+  const formatHMS = (ms: number) => {
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    return `${pad(h)} : ${pad(m)} : ${pad(s)}`;
+  };
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const open = [...attendanceState].reverse().find((r) => r.status === "Masuk" && r.checkOut === "-");
+      if (!open) {
+        setWorkingTimer("00 : 00 : 00");
+        return;
+      }
+      const now = Date.now();
+      const start = parseTime(open.checkIn);
+      const ms = now - start;
+      setWorkingTimer(formatHMS(ms));
+    }, 1000);
+    return () => clearInterval(id);
+  }, [attendanceState]);
 
   const tabs = ["Absensi", "Cuti", "Reimburse", "Team Calendar"];
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case "Absensi":
+      case "Absensi": {
+        const todayDate = new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" }).replace(/\./g, "");
+        const todayEntries = attendanceState.filter((r) => r.date === todayDate);
+        const openToday = todayEntries.find((r) => r.checkOut === "-");
+        const completedToday = todayEntries.find((r) => r.checkOut !== "-");
+        const btnLabel = openToday ? "Check Out" : "Check In";
+        const btnDisabled = !openToday && !!completedToday;
+        const checkInStr = openToday?.checkIn ?? completedToday?.checkIn;
+        let isLate = false;
+        if (checkInStr) {
+          const threshold = new Date();
+          threshold.setHours(8, 0, 0, 0);
+          isLate = parseTime(checkInStr) > threshold.getTime();
+        }
+        const timerBg = isLate ? "bg-yellow-400" : "bg-[#43918B]";
         return (
           <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
-            <div className="flex flex-row items-center justify-between gap-2.5 sm:gap-3 md:gap-4 md:flex-row md:items-center md:justify-between">
-              <label className="flex w-full md:w-sm items-center gap-2 sm:gap-2.5 md:gap-3 border border-black/10 bg-[#f7f7f7] px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-[10px] sm:text-xs md:text-sm text-black/60">
-                <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 shrink-0" />
-                <input
-                  type="text"
-                  placeholder="Enter text to search..."
-                  className="w-full bg-transparent text-[10px] sm:text-xs md:text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
-                />
-              </label>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between md:justify-between gap-2.5 sm:gap-3 md:gap-4">
+              <div className="flex flex-col md:flex-row items-center gap-2 sm:gap-2.5 md:gap-3">
+                <label className="flex w-full md:w-sm items-center gap-2 sm:gap-2.5 md:gap-3 border border-black/10 bg-[#f7f7f7] px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-[10px] sm:text-xs md:text-sm text-black/60">
+                  <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 shrink-0" />
+                  <input
+                    type="text"
+                    placeholder="Enter text to search..."
+                    className="w-full bg-transparent text-[10px] sm:text-xs md:text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
+                  />
+                </label>
+                <div className="flex w-full md:w-auto items-center gap-2">
+                  <button
+                    type="button"
+                    disabled={btnDisabled}
+                    onClick={async () => {
+                      if (openToday) {
+                        const now = new Date();
+                        const out = `${pad(now.getHours())} : ${pad(now.getMinutes())} : ${pad(now.getSeconds())} WIB`;
+                        const device = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? "Smartphone" : "Laptop";
+                        const position = await new Promise<{ lat: string; lng: string }>((resolve) => {
+                          if (!navigator.geolocation) {
+                            resolve({ lat: "-", lng: "-" });
+                            return;
+                          }
+                          navigator.geolocation.getCurrentPosition(
+                            (pos) => {
+                              const { latitude, longitude } = pos.coords;
+                              resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
+                            },
+                            () => resolve({ lat: "-", lng: "-" }),
+                            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+                          );
+                        });
+                        setAttendanceState((prev) => {
+                          const idx = prev.findIndex((r) => r.id === openToday.id);
+                          if (idx === -1) return prev;
+                          const target = prev[idx];
+                          const durMs = now.getTime() - parseTime(target.checkIn);
+                          const durH = Math.floor(durMs / 3600000);
+                          const durM = Math.floor((durMs % 3600000) / 60000);
+                          const durS = Math.floor((durMs % 60000) / 1000);
+                          const updated = { ...target, checkOut: out, duration: `${pad(durH)} Jam ${pad(durM)} Menit ${pad(durS)} Detik`, approval: "Approved", checkOutDevice: device, checkOutLat: position.lat, checkOutLng: position.lng };
+                          const next = [...prev];
+                          next[idx] = updated;
+                          return next;
+                        });
+                      } else if (!completedToday) {
+                        const device = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? "Smartphone" : "Laptop";
+                        const position = await new Promise<{ lat: string; lng: string }>((resolve) => {
+                          if (!navigator.geolocation) {
+                            resolve({ lat: "-", lng: "-" });
+                            return;
+                          }
+                          navigator.geolocation.getCurrentPosition(
+                            (pos) => {
+                              const { latitude, longitude } = pos.coords;
+                              resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
+                            },
+                            () => resolve({ lat: "-", lng: "-" }),
+                            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+                          );
+                        });
+                        const now = new Date();
+                        const date = now.toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" }).replace(/\./g, "");
+                        const time = `${pad(now.getHours())} : ${pad(now.getMinutes())} : ${pad(now.getSeconds())} WIB`;
+                        const nextId = (attendanceState.length + 1).toString().padStart(2, "0");
+                        setAttendanceState((prev) => [
+                          ...prev,
+                          {
+                            id: nextId,
+                            date,
+                            status: "Masuk",
+                            checkIn: time,
+                            checkOut: "-",
+                            duration: "-",
+                            source: device === "Smartphone" ? "Mobile" : "Web",
+                            approval: "Pending",
+                            device,
+                            lat: position.lat,
+                            lng: position.lng,
+                            checkInDevice: device,
+                            checkInLat: position.lat,
+                            checkInLng: position.lng,
+                          },
+                        ]);
+                      }
+                    }}
+                    className="flex items-center justify-center w-full h-[46px] md:w-auto border border-black/10 bg-[#43918B] px-3 md:px-4 py-1.5 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold text-white transition hover:bg-[#4aa098] disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {btnLabel}
+                  </button>
+                </div>
+              </div>
               <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 text-[10px] sm:text-xs">
                 <span className="whitespace-nowrap">Jam Kerja Anda</span>
-                <span className="bg-[#43918B] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs">
-                  6 Jam 25 Menit
+                <span className={`${timerBg} px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs`}>
+                  {workingTimer}
                 </span>
+                <button type="button" className="ml-2 border border-black/10 bg-[#ec971f] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs">Lapor</button>
               </div>
             </div>
 
             <div className="overflow-x-auto border border-black/10">
               <div className="min-w-[800px]">
-                <AttendanceTable rows={attendanceRows} />
+                <AttendanceTable rows={attendanceState} />
               </div>
             </div>
           </div>
         );
+      }
       case "Cuti":
         return (
           <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
@@ -575,6 +747,19 @@ function ScheduleTable({ rows }: { rows: ScheduleRow[] }) {
   );
 }
 
+function toDMS(value: string, type: "lat" | "lng") {
+  const num = parseFloat(value);
+  if (isNaN(num)) return value;
+  const sign = num >= 0;
+  const abs = Math.abs(num);
+  const deg = Math.floor(abs);
+  const minTotal = (abs - deg) * 60;
+  const min = Math.floor(minTotal);
+  const sec = (minTotal - min) * 60;
+  const hemi = type === "lat" ? (sign ? "N" : "S") : (sign ? "E" : "W");
+  return `${deg}°${min}'${sec.toFixed(1)}"${hemi}`;
+}
+
 function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
   return (
     <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
@@ -587,11 +772,13 @@ function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
           <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Jam Keluar</th>
           <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Jam Kerja</th>
           <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Sumber</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Device (In/Out)</th>
+          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Lokasi (In/Out)</th>
           <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">Status Absen</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-black/10 bg-white">
-        {rows.map((row) => (
+        {[...rows].sort((a, b) => parseInt(b.id) - parseInt(a.id)).map((row) => (
           <tr key={row.id}>
             <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
             <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.date}</td>
@@ -600,6 +787,49 @@ function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
             <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs">{row.checkOut}</td>
             <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs">{row.duration}</td>
             <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.source}</td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">
+              In: {row.checkInDevice ?? row.device}
+              <span className="mx-1">|</span>
+              Out: {row.checkOutDevice ?? (row.checkOut === '-' ? '-' : row.checkInDevice ?? row.device)}
+            </td>
+            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">
+              {row.checkInLat && row.checkInLng && row.checkInLat !== '-' && row.checkInLng !== '-' ? (
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${row.checkInLat},${row.checkInLng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#43918B] underline"
+                >
+                  In: {toDMS(row.checkInLat, "lat")} {toDMS(row.checkInLng, "lng")}
+                </a>
+              ) : (
+                row.lat !== '-' && row.lng !== '-' ? (
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${row.lat},${row.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#43918B] underline"
+                  >
+                    In: {toDMS(row.lat, "lat")} {toDMS(row.lng, "lng")}
+                  </a>
+                ) : (
+                  <>In: -</>
+                )
+              )}
+              <span className="mx-1">|</span>
+              {row.checkOutLat && row.checkOutLng && row.checkOutLat !== '-' && row.checkOutLng !== '-' ? (
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${row.checkOutLat},${row.checkOutLng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#43918B] underline"
+                >
+                  Out: {toDMS(row.checkOutLat, "lat")} {toDMS(row.checkOutLng, "lng")}
+                </a>
+              ) : (
+                <>Out: -</>
+              )}
+            </td>
             <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">{row.approval}</td>
           </tr>
         ))}
@@ -672,23 +902,23 @@ function ReimburseTable({ rows }: { rows: ReimburseRow[] }) {
 
 function TeamCalendar() {
   const daysOfWeek = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
-  
+
   // Generate days for November 2025 (30 days)
   // November 1, 2025 is Saturday, so we need 5 empty cells (Mon-Fri) before it
   const daysInMonth = 30;
   const days = [];
-  
+
   // Add empty cells for days before the 1st
   // November 1, 2025 is Saturday, so we need 5 empty cells (Mon-Fri)
   for (let i = 0; i < 5; i++) {
     days.push(null);
   }
-  
+
   // Add all days of the month
   for (let day = 1; day <= daysInMonth; day++) {
     days.push(day);
   }
-  
+
   // Add empty cells to fill the last week (if needed)
   const remainingCells = 42 - days.length; // 6 rows * 7 days = 42 cells
   for (let i = 0; i < remainingCells; i++) {
