@@ -478,20 +478,29 @@ export default function DashboardPage() {
                         const now = new Date();
                         const out = `${pad(now.getHours())} : ${pad(now.getMinutes())} : ${pad(now.getSeconds())} WIB`;
                         const device = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? "Smartphone" : "Laptop";
-                        const position = await new Promise<{ lat: string; lng: string }>((resolve) => {
-                          if (!navigator.geolocation) {
-                            resolve({ lat: "-", lng: "-" });
-                            return;
-                          }
-                          navigator.geolocation.getCurrentPosition(
-                            (pos) => {
-                              const { latitude, longitude } = pos.coords;
-                              resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
-                            },
-                            () => resolve({ lat: "-", lng: "-" }),
-                            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-                          );
-                        });
+                        let position: { lat: string; lng: string };
+                        try {
+                          position = await new Promise<{ lat: string; lng: string }>((resolve, reject) => {
+                            if (!navigator.geolocation) {
+                              alert("Lokasi tidak tersedia di perangkat ini. Aktifkan lokasi untuk Check Out.");
+                              reject(new Error("geolocation_unavailable"));
+                              return;
+                            }
+                            navigator.geolocation.getCurrentPosition(
+                              (pos) => {
+                                const { latitude, longitude } = pos.coords;
+                                resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
+                              },
+                              () => {
+                                alert("Mohon aktifkan izin lokasi untuk melanjutkan Check Out.");
+                                reject(new Error("geolocation_denied"));
+                              },
+                              { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+                            );
+                          });
+                        } catch {
+                          return;
+                        }
                         setAttendanceState((prev) => {
                           const idx = prev.findIndex((r) => r.id === openToday.id);
                           if (idx === -1) return prev;
@@ -507,20 +516,29 @@ export default function DashboardPage() {
                         });
                       } else if (!completedToday) {
                         const device = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? "Smartphone" : "Laptop";
-                        const position = await new Promise<{ lat: string; lng: string }>((resolve) => {
-                          if (!navigator.geolocation) {
-                            resolve({ lat: "-", lng: "-" });
-                            return;
-                          }
-                          navigator.geolocation.getCurrentPosition(
-                            (pos) => {
-                              const { latitude, longitude } = pos.coords;
-                              resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
-                            },
-                            () => resolve({ lat: "-", lng: "-" }),
-                            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-                          );
-                        });
+                        let position: { lat: string; lng: string };
+                        try {
+                          position = await new Promise<{ lat: string; lng: string }>((resolve, reject) => {
+                            if (!navigator.geolocation) {
+                              alert("Lokasi tidak tersedia di perangkat ini. Aktifkan lokasi untuk Check In.");
+                              reject(new Error("geolocation_unavailable"));
+                              return;
+                            }
+                            navigator.geolocation.getCurrentPosition(
+                              (pos) => {
+                                const { latitude, longitude } = pos.coords;
+                                resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
+                              },
+                              () => {
+                                alert("Mohon aktifkan izin lokasi untuk melanjutkan Check In.");
+                                reject(new Error("geolocation_denied"));
+                              },
+                              { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+                            );
+                          });
+                        } catch {
+                          return;
+                        }
                         const now = new Date();
                         const date = now.toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" }).replace(/\./g, "");
                         const time = `${pad(now.getHours())} : ${pad(now.getMinutes())} : ${pad(now.getSeconds())} WIB`;
