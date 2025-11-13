@@ -38,11 +38,20 @@ export const metadata: Metadata = {
     siteName: "WS Payroll",
     locale: "id_ID",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: "WS Payroll Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary",
     title: "WS Payroll",
     description: "Ringkasan dan pengelolaan HR self-service.",
+    images: ["/logo.png"],
   },
   icons: {
     icon: "/favicon.png",
