@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AlertTriangle, Search } from "lucide-react";
 
 const currentWeekSchedule = [
@@ -406,6 +407,7 @@ export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState("Absensi");
   const [attendanceState, setAttendanceState] = useState<AttendanceRow[]>(attendanceRows);
   const [workingTimer, setWorkingTimer] = useState("00 : 00 : 00");
+  const [isProcessing, setIsProcessing] = useState(false);
   const pad = (n: number) => n.toString().padStart(2, "0");
   const parseTime = (t: string) => {
     const m = t.match(/(\d{2})\s:\s(\d{2})\s:\s(\d{2})/);
@@ -457,6 +459,22 @@ export default function DashboardPage() {
     });
   }
 
+  async function getGeoOptional(): Promise<{ lat: string; lng: string }> {
+    if (!navigator.geolocation) {
+      return { lat: "-", lng: "-" };
+    }
+    return await new Promise<{ lat: string; lng: string }>((resolve) => {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
+        },
+        () => resolve({ lat: "-", lng: "-" }),
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      );
+    });
+  }
+
   useEffect(() => {
     const id = setInterval(() => {
       const open = [...attendanceState].reverse().find((r) => r.status === "Masuk" && r.checkOut === "-");
@@ -491,7 +509,7 @@ export default function DashboardPage() {
           isLate = parseTime(checkInStr) > threshold.getTime();
         }
         const timerBg = isLate ? "bg-yellow-400" : "bg-[#43918B]";
-        let lateDisplay = "00 Jam 00 Menit 00 Detik";
+        let lateDisplay = "00 : 00 : 00";
         if (isLate && checkInStr) {
           const threshold = new Date();
           threshold.setHours(8, 0, 0, 0);
@@ -521,16 +539,18 @@ export default function DashboardPage() {
                 <div className="flex flex-row w-full md:w-sm items-center gap-1">
                   <button
                     type="button"
-                    disabled={btnDisabled}
+                    disabled={btnDisabled || isProcessing}
                     onClick={async () => {
+                      setIsProcessing(true);
                       if (openToday) {
                         const now = new Date();
                         const out = `${pad(now.getHours())} : ${pad(now.getMinutes())} : ${pad(now.getSeconds())} WIB`;
                         const device = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? "Smartphone" : "Laptop";
                         let position: { lat: string; lng: string };
                         try {
-                          position = await requestGeoOrFail("Check Out");
+                          position = device === "Smartphone" ? await requestGeoOrFail("Check Out") : await getGeoOptional();
                         } catch {
+                          setIsProcessing(false);
                           return;
                         }
                         setAttendanceState((prev) => {
@@ -546,12 +566,14 @@ export default function DashboardPage() {
                           next[idx] = updated;
                           return next;
                         });
+                        setIsProcessing(false);
                       } else if (!completedToday) {
                         const device = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? "Smartphone" : "Laptop";
                         let position: { lat: string; lng: string };
                         try {
-                          position = await requestGeoOrFail("Check In");
+                          position = device === "Smartphone" ? await requestGeoOrFail("Check In") : await getGeoOptional();
                         } catch {
+                          setIsProcessing(false);
                           return;
                         }
                         const now = new Date();
@@ -577,18 +599,33 @@ export default function DashboardPage() {
                             checkInLng: position.lng,
                           },
                         ]);
+                        setIsProcessing(false);
+                      } else {
+                        setIsProcessing(false);
                       }
                     }}
-                    className="flex items-center justify-center w-full h-[46px] md:w-auto border border-black/10 bg-[#43918B] px-3 md:px-4 py-1.5 md:py-2 text-[10px] sm:text-xs md:text-sm font-semibold text-white transition hover:bg-[#4aa098] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center justify-center gap-2 w-full h-[46px] md:w-[110px] border border-black/10 bg-[#43918B] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs text-white transition hover:bg-[#4aa098] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
+                    {isProcessing && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-loader-icon lucide-loader animate-spin h-4 w-4 md:h-5 md:w-5">
+                        <path d="M12 2v4"/>
+                        <path d="m16.2 7.8 2.9-2.9"/>
+                        <path d="M18 12h4"/>
+                        <path d="m16.2 16.2 2.9 2.9"/>
+                        <path d="M12 18v4"/>
+                        <path d="m4.9 19.1 2.9-2.9"/>
+                        <path d="M2 12h4"/>
+                        <path d="m4.9 4.9 2.9 2.9"/>
+                      </svg>
+                    )}
                     {btnLabel}
                   </button>
                   {(isLate && (openToday || completedToday)) && (
-                    <button type="button" className="ml-2 border w-full h-[46px] border-black/10 bg-[#ec971f] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs">Lapor</button>
+                    <Link href="/self-service/laporan-terlambat-tidak-absen/create" className="flex items-center justify-center ml-2 w-full h-[46px] md:w-[110px] border border-black/10 bg-[#ec971f] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs transition hover:bg-[#ecb365] disabled:opacity-50 disabled:cursor-not-allowed">Lapor</Link>
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 text-[10px] sm:text-xs">
+              <div className="flex items-center w-full justify-center md:w-sm md:justify-end gap-1.5 sm:gap-2 md:gap-3 text-[10px] sm:text-xs">
                 <span className="whitespace-nowrap">Jam Kerja Anda</span>
                 <span className={`${timerBg} px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs`}>
                   {workingTimer}
