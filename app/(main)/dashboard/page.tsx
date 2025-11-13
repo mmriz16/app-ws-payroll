@@ -423,6 +423,40 @@ export default function DashboardPage() {
     return `${pad(h)} : ${pad(m)} : ${pad(s)}`;
   };
 
+  async function requestGeoOrFail(action: string): Promise<{ lat: string; lng: string }> {
+    if (!navigator.geolocation) {
+      alert(`Lokasi tidak tersedia di perangkat ini. Aktifkan lokasi untuk ${action}.`);
+      throw new Error("geolocation_unavailable");
+    }
+    try {
+      const permissions = (navigator as any).permissions?.query?.({ name: "geolocation" as any });
+      const perm = await permissions;
+      if (perm && perm.state === "denied") {
+        alert(`Mohon aktifkan izin lokasi di browser untuk melanjutkan ${action}.`);
+        throw new Error("geolocation_denied");
+      }
+    } catch {}
+    return await new Promise<{ lat: string; lng: string }>((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
+        },
+        (err) => {
+          if ((err as any).code === 1) {
+            alert(`Izin lokasi ditolak. Mohon allow lokasi untuk ${action}.`);
+          } else if ((err as any).code === 2) {
+            alert("Lokasi tidak tersedia. Coba nyalakan GPS/High accuracy atau pindah ke area terbuka.");
+          } else {
+            alert("Lokasi timeout. Coba lagi dan pastikan sinyal GPS aktif.");
+          }
+          reject(err);
+        },
+        { enableHighAccuracy: true, timeout: 30000, maximumAge: 10000 }
+      );
+    });
+  }
+
   useEffect(() => {
     const id = setInterval(() => {
       const open = [...attendanceState].reverse().find((r) => r.status === "Masuk" && r.checkOut === "-");
@@ -460,8 +494,8 @@ export default function DashboardPage() {
         return (
           <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-6 md:p-6">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between md:justify-between gap-2.5 sm:gap-3 md:gap-4">
-              <div className="flex flex-col md:flex-row items-center gap-2 sm:gap-2.5 md:gap-3">
-                <label className="flex w-full md:w-sm items-center gap-2 sm:gap-2.5 md:gap-3 border border-black/10 bg-[#f7f7f7] px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-[10px] sm:text-xs md:text-sm text-black/60">
+              <div className="flex flex-col md:flex-row w-full md:w-lg items-center gap-2 sm:gap-2.5 md:gap-3">
+                <label className="flex w-full md:w-sm items-center h-[46px] gap-2 sm:gap-2.5 md:gap-3 border border-black/10 bg-[#f7f7f7] px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-[10px] sm:text-xs md:text-sm text-black/60">
                   <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 shrink-0" />
                   <input
                     type="text"
@@ -469,7 +503,7 @@ export default function DashboardPage() {
                     className="w-full bg-transparent text-[10px] sm:text-xs md:text-sm text-black/80 placeholder:text-black/50 focus:outline-none"
                   />
                 </label>
-                <div className="flex w-full md:w-auto items-center gap-2">
+                <div className="flex flex-row w-full md:w-sm items-center gap-1">
                   <button
                     type="button"
                     disabled={btnDisabled}
@@ -480,24 +514,7 @@ export default function DashboardPage() {
                         const device = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? "Smartphone" : "Laptop";
                         let position: { lat: string; lng: string };
                         try {
-                          position = await new Promise<{ lat: string; lng: string }>((resolve, reject) => {
-                            if (!navigator.geolocation) {
-                              alert("Lokasi tidak tersedia di perangkat ini. Aktifkan lokasi untuk Check Out.");
-                              reject(new Error("geolocation_unavailable"));
-                              return;
-                            }
-                            navigator.geolocation.getCurrentPosition(
-                              (pos) => {
-                                const { latitude, longitude } = pos.coords;
-                                resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
-                              },
-                              () => {
-                                alert("Mohon aktifkan izin lokasi untuk melanjutkan Check Out.");
-                                reject(new Error("geolocation_denied"));
-                              },
-                              { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-                            );
-                          });
+                          position = await requestGeoOrFail("Check Out");
                         } catch {
                           return;
                         }
@@ -518,24 +535,7 @@ export default function DashboardPage() {
                         const device = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? "Smartphone" : "Laptop";
                         let position: { lat: string; lng: string };
                         try {
-                          position = await new Promise<{ lat: string; lng: string }>((resolve, reject) => {
-                            if (!navigator.geolocation) {
-                              alert("Lokasi tidak tersedia di perangkat ini. Aktifkan lokasi untuk Check In.");
-                              reject(new Error("geolocation_unavailable"));
-                              return;
-                            }
-                            navigator.geolocation.getCurrentPosition(
-                              (pos) => {
-                                const { latitude, longitude } = pos.coords;
-                                resolve({ lat: latitude.toFixed(6), lng: longitude.toFixed(6) });
-                              },
-                              () => {
-                                alert("Mohon aktifkan izin lokasi untuk melanjutkan Check In.");
-                                reject(new Error("geolocation_denied"));
-                              },
-                              { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-                            );
-                          });
+                          position = await requestGeoOrFail("Check In");
                         } catch {
                           return;
                         }
@@ -568,6 +568,9 @@ export default function DashboardPage() {
                   >
                     {btnLabel}
                   </button>
+                  {(isLate && (openToday || completedToday)) && (
+                    <button type="button" className="ml-2 border w-full h-[46px] border-black/10 bg-[#ec971f] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs">Lapor</button>
+                  )}
                 </div>
               </div>
               <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 text-[10px] sm:text-xs">
@@ -575,7 +578,6 @@ export default function DashboardPage() {
                 <span className={`${timerBg} px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs`}>
                   {workingTimer}
                 </span>
-                <button type="button" className="ml-2 border border-black/10 bg-[#ec971f] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 text-white whitespace-nowrap text-[10px] sm:text-xs">Lapor</button>
               </div>
             </div>
 
