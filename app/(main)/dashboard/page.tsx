@@ -491,7 +491,7 @@ export default function DashboardPage() {
           isLate = parseTime(checkInStr) > threshold.getTime();
         }
         const timerBg = isLate ? "bg-yellow-400" : "bg-[#43918B]";
-        let lateDisplay = "00 : 00 : 00";
+        let lateDisplay = "00 Jam 00 Menit 00 Detik";
         if (isLate && checkInStr) {
           const threshold = new Date();
           threshold.setHours(8, 0, 0, 0);
