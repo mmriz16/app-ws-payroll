@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   },
   description: "Platform HR self-service untuk absensi, cuti, reimbursement, dan payroll.",
   applicationName: "WS Payroll",
+  // Link PWA web manifest so browsers can install the app
+  manifest: "/manifest.json",
+  // Define theme color for the browser UI and taskbar
+  themeColor: "#0f172a",
   keywords: [
     "ws payroll",
     "hr",
@@ -54,15 +58,18 @@ export const metadata: Metadata = {
     images: ["/logo.png"],
   },
   icons: {
+    // Favicon and Apple touch icon
     icon: "/favicon.png",
     shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    apple: "/logo.png",
   },
 };
 
 export const viewport = {
   width: "device-width",
   initialScale: 1,
+  // Make the app draw behind system UI for better PWA fullscreen feel
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -72,6 +79,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
+      {/* PWA: body remains unchanged; service worker registration is auto-injected by next-pwa */}
       <body
         suppressHydrationWarning
         className={`${inter.variable} ${geistMono.variable} antialiased`}
