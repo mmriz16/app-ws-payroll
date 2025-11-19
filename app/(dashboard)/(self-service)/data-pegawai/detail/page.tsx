@@ -11,7 +11,7 @@ export default function DataPegawaiPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
             <section className="flex flex-1 flex-col gap-4 p-4 md:gap-6 md:p-6">
-                <Link href="/self-service/data-pegawai" className="flex items-center justify-center w-fit text-sm font-semibold text-black">
+                <Link href="/data-pegawai" className="flex items-center justify-center w-fit text-sm font-semibold text-black">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Kembali
                 </Link>

@@ -1,6 +1,6 @@
-
 import Link from "next/link";
 import type { Metadata } from "next";
+import { DataTable, type ColumnDef } from "@/app/components/data-table";
 
 export const metadata: Metadata = {
     title: "Pengajuan Cuti & Ijin",
@@ -65,20 +65,20 @@ export default function PengajuanReimbursementPage() {
                 <div className="flex flex-col gap-4 border border-black/10 bg-white p-3 md:p-6">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <h2 className="text-base md:text-lg font-medium">Pengajuan Reimbursement</h2>
-                        <div className="flex w-full md:w-fit flex-row md:flex-row gap-3 md:gap-4">
+                        <div className="flex w-full flex-col gap-3 sm:flex-row md:w-fit md:gap-4">
                             <div className="flex flex-col w-full md:w-[250px] gap-2">
                                 <input id="tanggal_mulai" name="tanggal_mulai" type="month" placeholder="e.g. Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <Link
                                 href="/self-service/pengajuan-reimbursement/create"
-                                className="flex items-center justify-center w-full md:w-fit border border-black/10 bg-[#43918B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4aa098]"
+                                className="flex items-center justify-center w-full sm:w-fit border border-black/10 bg-[#43918B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4aa098]"
                             >
                                 Ajukan
                             </Link>
                         </div>
                     </div>
                     <div className="overflow-x-auto border border-black/10">
-                        <EmployeeTable rows={employees} />
+                        <DataTable columns={reimbursementColumns} data={employees} />
                     </div>
                 </div>
             </section>
@@ -107,37 +107,45 @@ function paymentStatusClass(text: string) {
     return base + " bg-gray-100 text-gray-700";
 }
 
-function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
-    return (
-        <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-            <thead className="bg-white text-black text-xs">
-                <tr>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Kode</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Nama Pegawai</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Status</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Total</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">Entrier</th>
-                    <th className="px-4 py-3">Status Pembayaran</th>
-                </tr>
-            </thead>
-            <tbody className="divide-y divide-black/10 bg-white">
-                {rows.map((row) => (
-                    <tr key={row.id}>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.kode}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 font-medium text-black/70 whitespace-nowrap">{row.nip}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 truncate">{row.nama_pegawai}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">
-                            <span className={statusClass(row.status)}>{row.status}</span>
-                        </td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.total}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">{row.entrier}</td>
-                        <td className="px-4 py-3">
-                            <span className={paymentStatusClass(row.status_pembayaran)}>{row.status_pembayaran}</span>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
-}
+const reimbursementColumns: ColumnDef<EmployeeRow>[] = [
+    {
+        header: "Kode",
+        accessor: "kode",
+        cellClassName: "whitespace-nowrap",
+    },
+    {
+        header: "NIP",
+        accessor: "nip",
+        cellClassName: "font-medium text-black/70 whitespace-nowrap",
+    },
+    {
+        header: "Nama Pegawai",
+        accessor: "nama_pegawai",
+        cellClassName: "truncate",
+    },
+    {
+        header: "Status",
+        accessor: "status",
+        render: (value) => (
+            <span className={statusClass(String(value))}>{String(value)}</span>
+        ),
+    },
+    {
+        header: "Total",
+        accessor: "total",
+        cellClassName: "whitespace-nowrap",
+    },
+    {
+        header: "Entrier",
+        accessor: "entrier",
+        headerClassName: "hidden md:table-cell",
+        cellClassName: "hidden md:table-cell",
+    },
+    {
+        header: "Status Pembayaran",
+        accessor: "status_pembayaran",
+        render: (value) => (
+            <span className={paymentStatusClass(String(value))}>{String(value)}</span>
+        ),
+    },
+];

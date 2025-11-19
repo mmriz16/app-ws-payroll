@@ -1,5 +1,5 @@
-
 import type { Metadata } from "next";
+import { DataTable, type ColumnDef } from "@/app/components/data-table";
 
 export const metadata: Metadata = {
     title: "Pengajuan Cuti & Ijin",
@@ -79,7 +79,7 @@ export default function ApprovalCutiIjinPage() {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <h2 className="text-base md:text-lg font-medium">Approval Cuti & Ijin</h2>
                         <div className="flex w-full md:w-fit flex-col md:flex-row gap-3 md:gap-4">
-                            <div className="flex flex-row w-full md:w-[500px] gap-2">
+                            <div className="flex w-full flex-col sm:flex-row gap-2">
                                 <div className="flex flex-col w-full sm:w-[200px] md:w-[250px] gap-2">
                                     <input id="Tanggal_Awal" name="Tanggal_Awal" type="date" placeholder="e.g. 01 Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                                 </div>
@@ -100,7 +100,7 @@ export default function ApprovalCutiIjinPage() {
                         </div>
                     </div>
                     <div className="overflow-x-auto border border-black/10">
-                        <EmployeeTable rows={employees} />
+                        <DataTable columns={approvalCutiColumns} data={employees} />
                     </div>
                 </div>
             </section>
@@ -122,39 +122,50 @@ function statusClass(status: string) {
     }
 }
 
-function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
-    return (
-        <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-            <thead className="bg-white text-black text-xs">
-                <tr>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Nama Lengkap</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Tipe</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">Catatan Pengajuan</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Mulai</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Selesai</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">Hari Kerja</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">Entrier</th>
-                    <th className="px-4 py-3">Status Pengajuan</th>
-                </tr>
-            </thead>
-            <tbody className="divide-y divide-black/10 bg-white">
-                {rows.map((row) => (
-                    <tr key={row.id}>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.nip}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 truncate">{row.nama_lengkap}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tipe}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell truncate">{row.catatan_pengajuan}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.tanggal_mulai}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.tanggal_selesai}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">{row.hari_kerja}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10 hidden md:table-cell">{row.entrier}</td>
-                        <td className="px-4 py-3">
-                            <span className={statusClass(row.status_pengajuan)}>{row.status_pengajuan}</span>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
-}
+const approvalCutiColumns: ColumnDef<EmployeeRow>[] = [
+    {
+        header: "NIP",
+        accessor: "nip",
+    },
+    {
+        header: "Nama Lengkap",
+        accessor: "nama_lengkap",
+    },
+    {
+        header: "Tipe",
+        accessor: "tipe",
+    },
+    {
+        header: "Catatan Pengajuan",
+        accessor: "catatan_pengajuan",
+        headerClassName: "hidden md:table-cell",
+        cellClassName: "hidden md:table-cell",
+    },
+    {
+        header: "Tanggal Mulai",
+        accessor: "tanggal_mulai",
+    },
+    {
+        header: "Tanggal Selesai",
+        accessor: "tanggal_selesai",
+    },
+    {
+        header: "Hari Kerja",
+        accessor: "hari_kerja",
+        headerClassName: "hidden md:table-cell",
+        cellClassName: "hidden md:table-cell",
+    },
+    {
+        header: "Entrier",
+        accessor: "entrier",
+        headerClassName: "hidden md:table-cell",
+        cellClassName: "hidden md:table-cell",
+    },
+    {
+        header: "Status Pengajuan",
+        accessor: "status_pengajuan",
+        render: (value) => (
+            <span className={statusClass(String(value))}>{String(value)}</span>
+        ),
+    },
+];

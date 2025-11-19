@@ -16,7 +16,7 @@ export default function PengajuanCutiIjinPage() {
     return (
         <div className="flex flex-1 flex-col text-black">
             <section className="flex flex-1 flex-col gap-4 p-4 md:gap-6 md:p-6">
-                <Link href="/self-service/pengajuan-cuti-ijin" className="flex items-center justify-center w-fit text-sm font-semibold text-black">
+                <Link href="/pengajuan-cuti-ijin" className="flex items-center justify-center w-fit text-sm font-semibold text-black">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Kembali
                 </Link>
@@ -84,7 +84,7 @@ export default function PengajuanCutiIjinPage() {
                         </div>
 
                         <Link
-                            href="/self-service/pengajuan-cuti-ijin"
+                            href="/pengajuan-cuti-ijin"
                             className="flex items-center justify-center h-[54px] w-full md:w-fit border border-black/10 bg-[#43918B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4aa098]"
                         >
                             Buat Pengajuan

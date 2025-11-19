@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AlertTriangle, Search } from "lucide-react";
+import { DataTable, type ColumnDef } from "@/app/components/data-table";
 
 const currentWeekSchedule = [
   {
@@ -634,9 +635,11 @@ export default function DashboardPage() {
             </div>
 
             <div className="overflow-x-auto border border-black/10">
-              <div className="min-w-[800px]">
-                <AttendanceTable rows={attendanceState} />
-              </div>
+              <DataTable 
+                columns={attendanceColumns} 
+                data={[...attendanceState].sort((a, b) => parseInt(b.id) - parseInt(a.id))} 
+                minWidth="800px"
+              />
             </div>
           </div>
         );
@@ -662,9 +665,7 @@ export default function DashboardPage() {
             </div>
 
             <div className="overflow-x-auto border border-black/10">
-              <div className="min-w-[800px]">
-                <CutiTable rows={cutiRows} />
-              </div>
+              <DataTable columns={cutiColumns} data={cutiRows} minWidth="800px" />
             </div>
           </div>
         );
@@ -689,9 +690,7 @@ export default function DashboardPage() {
             </div>
 
             <div className="overflow-x-auto border border-black/10">
-              <div className="min-w-[800px]">
-                <ReimburseTable rows={reimburseRows} />
-              </div>
+              <DataTable columns={reimburseColumns} data={reimburseRows} minWidth="800px" />
             </div>
           </div>
         );
@@ -829,145 +828,169 @@ function toDMS(value: string, type: "lat" | "lng") {
   return `${deg}°${min}'${sec.toFixed(1)}"${hemi}`;
 }
 
-function AttendanceTable({ rows }: { rows: AttendanceRow[] }) {
-  return (
-    <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
-      <thead className="bg-white text-black text-xs sm:text-sm">
-        <tr>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">#</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Tanggal</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Absensi</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Jam Masuk</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Jam Keluar</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Jam Kerja</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Sumber</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Device (In/Out)</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Lokasi (In/Out)</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">Status Absen</th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-black/10 bg-white">
-        {[...rows].sort((a, b) => parseInt(b.id) - parseInt(a.id)).map((row) => (
-          <tr key={row.id}>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.date}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.status}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs">{row.checkIn}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs">{row.checkOut}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap text-[9px] sm:text-[10px] md:text-xs">{row.duration}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.source}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">
-              In: {row.checkInDevice ?? row.device}
-              <span className="mx-1">|</span>
-              Out: {row.checkOutDevice ?? (row.checkOut === '-' ? '-' : row.checkInDevice ?? row.device)}
-            </td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">
-              {row.checkInLat && row.checkInLng && row.checkInLat !== '-' && row.checkInLng !== '-' ? (
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${row.checkInLat},${row.checkInLng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#43918B] underline"
-                >
-                  In: {toDMS(row.checkInLat, "lat")} {toDMS(row.checkInLng, "lng")}
-                </a>
-              ) : (
-                row.lat !== '-' && row.lng !== '-' ? (
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${row.lat},${row.lng}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#43918B] underline"
-                  >
-                    In: {toDMS(row.lat, "lat")} {toDMS(row.lng, "lng")}
-                  </a>
-                ) : (
-                  <>In: -</>
-                )
-              )}
-              <span className="mx-1">|</span>
-              {row.checkOutLat && row.checkOutLng && row.checkOutLat !== '-' && row.checkOutLng !== '-' ? (
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${row.checkOutLat},${row.checkOutLng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#43918B] underline"
-                >
-                  Out: {toDMS(row.checkOutLat, "lat")} {toDMS(row.checkOutLng, "lng")}
-                </a>
-              ) : (
-                <>Out: -</>
-              )}
-            </td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">{row.approval}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
+const attendanceColumns: ColumnDef<AttendanceRow>[] = [
+  {
+    header: "#",
+    accessor: "id",
+  },
+  {
+    header: "Tanggal",
+    accessor: "date",
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Absensi",
+    accessor: "status",
+  },
+  {
+    header: "Jam Masuk",
+    accessor: "checkIn",
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Jam Keluar",
+    accessor: "checkOut",
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Jam Kerja",
+    accessor: "duration",
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Sumber",
+    accessor: "source",
+  },
+  {
+    header: "Device (In/Out)",
+    accessor: (row) => (
+      <>
+        In: {row.checkInDevice ?? row.device}
+        <span className="mx-1">|</span>
+        Out: {row.checkOutDevice ?? (row.checkOut === '-' ? '-' : row.checkInDevice ?? row.device)}
+      </>
+    ),
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Lokasi (In/Out)",
+    accessor: (row) => {
+      const inLink = row.checkInLat && row.checkInLng && row.checkInLat !== '-' && row.checkInLng !== '-' ? (
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${row.checkInLat},${row.checkInLng}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#43918B] underline"
+        >
+          In: {toDMS(row.checkInLat, "lat")} {toDMS(row.checkInLng, "lng")}
+        </a>
+      ) : (
+        row.lat !== '-' && row.lng !== '-' ? (
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${row.lat},${row.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#43918B] underline"
+          >
+            In: {toDMS(row.lat, "lat")} {toDMS(row.lng, "lng")}
+          </a>
+        ) : (
+          <>In: -</>
+        )
+      );
+      const outLink = row.checkOutLat && row.checkOutLng && row.checkOutLat !== '-' && row.checkOutLng !== '-' ? (
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${row.checkOutLat},${row.checkOutLng}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#43918B] underline"
+        >
+          Out: {toDMS(row.checkOutLat, "lat")} {toDMS(row.checkOutLng, "lng")}
+        </a>
+      ) : (
+        <>Out: -</>
+      );
+      return (
+        <>
+          {inLink}
+          <span className="mx-1">|</span>
+          {outLink}
+        </>
+      );
+    },
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Status Absen",
+    accessor: "approval",
+  },
+];
 
-function CutiTable({ rows }: { rows: CutiRow[] }) {
-  return (
-    <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
-      <thead className="bg-white text-black text-xs sm:text-sm">
-        <tr>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">#</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Cuti</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Mulai Dari</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Sampai Dengan</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Tanggal Approval</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Approved Oleh</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">Notes</th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-black/10 bg-white">
-        {rows.map((row) => (
-          <tr key={row.id}>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.cuti}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.mulai_dari}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.sampai_dengan}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.tanggal_approval}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.approved_oleh}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">{row.notes}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
+const cutiColumns: ColumnDef<CutiRow>[] = [
+  {
+    header: "#",
+    accessor: "id",
+  },
+  {
+    header: "Cuti",
+    accessor: "cuti",
+  },
+  {
+    header: "Mulai Dari",
+    accessor: "mulai_dari",
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Sampai Dengan",
+    accessor: "sampai_dengan",
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Tanggal Approval",
+    accessor: "tanggal_approval",
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Approved Oleh",
+    accessor: "approved_oleh",
+  },
+  {
+    header: "Notes",
+    accessor: "notes",
+  },
+];
 
-function ReimburseTable({ rows }: { rows: ReimburseRow[] }) {
-  return (
-    <table className="min-w-full divide-y divide-black/10 text-left text-[10px] sm:text-xs">
-      <thead className="bg-white text-black text-xs sm:text-sm">
-        <tr>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">#</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">NIP</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Nama</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Kode</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Status</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">Status Pembayaran</th>
-          <th className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">Catatan</th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-black/10 bg-white">
-        {rows.map((row) => (
-          <tr key={row.id}>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 font-medium text-black/70">{row.id}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.nip}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.nama}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.kode}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10">{row.status}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3 bg-white border-r border-black/10 whitespace-nowrap">{row.status_pembayaran}</td>
-            <td className="px-1.5 sm:px-2 md:px-4 py-1.5 sm:py-2 md:py-3">{row.catatan}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
+const reimburseColumns: ColumnDef<ReimburseRow>[] = [
+  {
+    header: "#",
+    accessor: "id",
+  },
+  {
+    header: "NIP",
+    accessor: "nip",
+  },
+  {
+    header: "Nama",
+    accessor: "nama",
+  },
+  {
+    header: "Kode",
+    accessor: "kode",
+  },
+  {
+    header: "Status",
+    accessor: "status",
+  },
+  {
+    header: "Status Pembayaran",
+    accessor: "status_pembayaran",
+    cellClassName: "whitespace-nowrap",
+  },
+  {
+    header: "Catatan",
+    accessor: "catatan",
+  },
+];
 
 function TeamCalendar() {
   const daysOfWeek = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];

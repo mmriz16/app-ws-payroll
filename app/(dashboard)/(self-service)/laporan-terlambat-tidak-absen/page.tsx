@@ -1,6 +1,6 @@
-
 import Link from "next/link";
 import type { Metadata } from "next";
+import { DataTable, type ColumnDef } from "@/app/components/data-table";
 
 export const metadata: Metadata = {
     title: "Laporan Terlambat & Tidak Absen",
@@ -61,20 +61,20 @@ export default function LaporanTerlambatTidakAbsenPage() {
                 <div className="flex flex-col gap-4 border border-black/10 bg-white p-3 md:p-6">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                         <h2 className="text-base md:text-lg font-medium">Laporan Terlambat & Tidak Absen</h2>
-                        <div className="flex w-full md:w-fit flex-row sm:flex-row gap-4">
+                        <div className="flex w-full flex-col gap-3 sm:flex-row md:w-fit">
                             <div className="flex flex-col w-full md:w-[250px] gap-2">
                                 <input id="tanggal_mulai" name="tanggal_mulai" type="month" placeholder="e.g. Jan 2026" className="w-full border border-black/10 bg-[#f7f7f7] px-3 sm:px-4 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm text-black placeholder:text-black/50 focus:border-[#43918B] focus:outline-none focus:ring-2 focus:ring-[#43918B]/60" />
                             </div>
                             <Link
                                 href="/self-service/laporan-terlambat-tidak-absen/create"
-                                className="flex items-center justify-center w-full md:w-fit border border-black/10 bg-[#43918B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4aa098]"
+                                className="flex items-center justify-center w-full sm:w-fit border border-black/10 bg-[#43918B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4aa098]"
                             >
                                 Buat Laporan
                             </Link>
                         </div>
                     </div>
                     <div className="overflow-x-auto border border-black/10">
-                        <EmployeeTable rows={employees} />
+                        <DataTable columns={laporanColumns} data={employees} />
                     </div>
                 </div>
             </section>
@@ -82,31 +82,29 @@ export default function LaporanTerlambatTidakAbsenPage() {
     );
 }
 
-function EmployeeTable({ rows }: { rows: EmployeeRow[] }) {
-    return (
-        <table className="min-w-full divide-y divide-black/10 text-left text-xs">
-            <thead className="bg-white text-black text-xs">
-                <tr>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Status</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">NIP</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Tipe</th>
-                    <th className="px-4 py-3 bg-white border-r border-black/10">Tanggal Lapor</th>
-                    <th className="px-4 py-3">Notes</th>
-                </tr>
-            </thead>
-            <tbody className="divide-y divide-black/10 bg-white">
-                {rows.map((row) => (
-                    <tr key={row.id}>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.status}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.nip}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tipe}</td>
-                        <td className="px-4 py-3 bg-white border-r border-black/10">{row.tanggal_lapor}</td>
-                        <td className="px-4 py-3">{row.notes}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
-}
+const laporanColumns: ColumnDef<EmployeeRow>[] = [
+    {
+        header: "Status",
+        accessor: "status",
+    },
+    {
+        header: "NIP",
+        accessor: "nip",
+    },
+    {
+        header: "Tanggal",
+        accessor: "tanggal",
+    },
+    {
+        header: "Tipe",
+        accessor: "tipe",
+    },
+    {
+        header: "Tanggal Lapor",
+        accessor: "tanggal_lapor",
+    },
+    {
+        header: "Notes",
+        accessor: "notes",
+    },
+];
